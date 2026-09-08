@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =========================================
+         BASIC INFORMATION
+         ========================================= -->
+
+    <title>Tool Instructions</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="A simple educational guide explaining how to use a device or tool.">
+
+
+    <!-- =========================================
+         FONTS
+         ========================================= -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <!--
+        SPACE GROTESK = headings
+        DM SANS = body text
+    -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         STYLING
+         ========================================= -->
+
+    <style>
+
+        /* =========================================
+           ROOT VARIABLES
+           ========================================= */
+
+        :root {
+
+            /* ==============================
+               COLOR SYSTEM
+               ============================== */
+
+            --color-black: #0b0b0f;
+            --color-white: #ffffff;
+
+            --color-gray-50: #fafafa;
+            --color-gray-100: #f4f4f5;
+            --color-gray-200: #e4e4e7;
+            --color-gray-400: #a1a1aa;
+            --color-gray-500: #71717a;
+            --color-gray-700: #3f3f46;
+
+            --color-primary: #8469de;
+            --color-primary-dark: #3a26ef;
+            --color-primary-light: #9a91e2;
+
+
+            /* ==============================
+               SPACING SYSTEM
+               ============================== */
+
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            --space-8: 32px;
+            --space-10: 40px;
+            --space-12: 48px;
+            --space-16: 64px;
+            --space-20: 80px;
+
+
+            /* ==============================
+               RADIUS SYSTEM
+               ============================== */
+
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-round: 999px;
+
+
+            /* ==============================
+               PAGE SETTINGS
+               ============================== */
+
+            --max-width: 1200px;
+
+            --side-padding: clamp(
+                16px,
+                5vw,
+                48px
+            );
+
+
+            /* ==============================
+               SHADOWS
+               ============================== */
+
+            --shadow-sm:
+                0 2px 8px rgba(0, 0, 0, 0.04);
+
+            --shadow-md:
+                0 8px 30px rgba(0, 0, 0, 0.07);
+
+            --shadow-lg:
+                0 15px 40px rgba(0, 0, 0, 0.10);
+        }
+
+
+
+        /* =========================================
+           RESET
+           ========================================= */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            min-width: 320px;
+
+            font-family:
+                "DM Sans",
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            font-size: 16px;
+            line-height: 1.6;
+
+            color: var(--color-black);
+
+            background:
+                var(--color-white);
+
+            overflow-x: hidden;
+        }
+
+
+        img,
+        video,
+        iframe {
+            display: block;
+            max-width: 100%;
+        }
+
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+
+        a {
+            color: inherit;
+        }
+
+
+
+        /* =========================================
+           MAIN PAGE
+           ========================================= */
+
+        .tool-page {
+            width: 100%;
+            min-height: 100vh;
+
+            background:
+                var(--color-white);
+        }
+
+
+
+        /* =========================================
+           MAIN CONTENT CONTAINER
+           ========================================= */
+
+        .tool-container {
+
+            width: 100%;
+
+            max-width:
+                var(--max-width);
+
+            margin:
+                0 auto;
+
+            padding:
+                clamp(48px, 8vw, 96px)
+                var(--side-padding);
+        }
+
+
+
+        /* =========================================
+           HEADER
+           ========================================= */
+
+        .tool-header {
+
+            width: 100%;
+
+            max-width: 850px;
+
+            margin:
+                0 auto
+                clamp(48px, 7vw, 80px);
+
+            text-align: center;
+        }
+
+
+
+        /* =========================================
+           LABEL
+           ========================================= */
+
+        .tool-label {
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom:
+                var(--space-4);
+
+            padding:
+                7px 14px;
+
+            font-family:
+                "DM Sans",
+                sans-serif;
+
+            font-size:
+                clamp(11px, 1.5vw, 13px);
+
+            font-weight: 700;
+
+            line-height: 1;
+
+            color:
+                var(--color-primary-dark);
+
+            background:
+                rgba(132, 105, 222, 0.10);
+
+            border:
+                1px solid
+                rgba(132, 105, 222, 0.20);
+
+            border-radius:
+                var(--radius-round);
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                1.5px;
+        }
+
+
+
+        /* =========================================
+           MAIN TITLE
+           ========================================= */
+
+        .tool-title {
+
+            margin:
+                0 0
+                var(--space-4);
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    36px,
+                    7vw,
+                    64px
+                );
+
+            font-weight:
+                700;
+
+            line-height:
+                1.05;
+
+            letter-spacing:
+                -2px;
+
+            color:
+                var(--color-black);
+
+            overflow-wrap:
+                anywhere;
+        }
+
+
+
+        /* =========================================
+           DESCRIPTION
+           ========================================= */
+
+        .tool-description {
+
+            width: 100%;
+
+            max-width:
+                720px;
+
+            margin:
+                0 auto;
+
+            font-family:
+                "DM Sans",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    15px,
+                    2vw,
+                    18px
+                );
+
+            font-weight:
+                400;
+
+            line-height:
+                1.65;
+
+            color:
+                var(--color-gray-500);
+        }
+
+
+
+        /* =========================================
+           GENERAL SECTIONS
+           ========================================= */
+
+        .tool-section {
+
+            width: 100%;
+
+            margin-bottom:
+                clamp(
+                    56px,
+                    8vw,
+                    96px
+                );
+        }
+
+
+
+        /* =========================================
+           SECTION HEADING
+           ========================================= */
+
+        .section-heading {
+
+            margin:
+                0 0
+                clamp(
+                    24px,
+                    4vw,
+                    40px
+                );
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    28px,
+                    5vw,
+                    40px
+                );
+
+            font-weight:
+                700;
+
+            line-height:
+                1.15;
+
+            letter-spacing:
+                -1px;
+
+            color:
+                var(--color-black);
+        }
+
+
+
+        /* =========================================
+           INSTRUCTIONS GRID
+           ========================================= */
+
+        .instructions {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
+            gap:
+                clamp(
+                    16px,
+                    3vw,
+                    24px
+                );
+        }
+
+
+
+        /* =========================================
+           INSTRUCTION CARD
+           ========================================= */
+
+        .instruction-card {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            width: 100%;
+
+            min-width: 0;
+
+            padding:
+                clamp(
+                    20px,
+                    3vw,
+                    32px
+                );
+
+            background:
+                var(--color-white);
+
+            border:
+                1px solid
+                var(--color-gray-200);
+
+            border-radius:
+                var(--radius-lg);
+
+            box-shadow:
+                var(--shadow-sm);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+
+
+        /* =========================================
+           CARD HOVER
+           ========================================= */
+
+        .instruction-card:hover {
+
+            transform:
+                translateY(-4px);
+
+            border-color:
+                rgba(
+                    132,
+                    105,
+                    222,
+                    0.45
+                );
+
+            box-shadow:
+                var(--shadow-md);
+        }
+
+
+
+        /* =========================================
+           INSTRUCTION NUMBER
+           ========================================= */
+
+        .instruction-number {
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            width:
+                clamp(
+                    40px,
+                    5vw,
+                    48px
+                );
+
+            height:
+                clamp(
+                    40px,
+                    5vw,
+                    48px
+                );
+
+            margin-right:
+                clamp(
+                    14px,
+                    2vw,
+                    20px
+                );
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    16px,
+                    2vw,
+                    20px
+                );
+
+            font-weight:
+                700;
+
+            color:
+                var(--color-white);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--color-primary),
+                    var(--color-primary-dark)
+                );
+
+            border-radius:
+                var(--radius-round);
+
+            box-shadow:
+                0 6px 15px
+                rgba(
+                    132,
+                    105,
+                    222,
+                    0.25
+                );
+        }
+
+
+
+        /* =========================================
+           INSTRUCTION CONTENT
+           ========================================= */
+
+        .instruction-content {
+
+            flex: 1;
+
+            min-width: 0;
+        }
+
+
+
+        /* =========================================
+           INSTRUCTION TITLE
+           ========================================= */
+
+        .instruction-title {
+
+            margin:
+                0 0
+                var(--space-2);
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    19px,
+                    2.5vw,
+                    24px
+                );
+
+            font-weight:
+                700;
+
+            line-height:
+                1.25;
+
+            letter-spacing:
+                -0.4px;
+
+            color:
+                var(--color-black);
+        }
+
+
+
+        /* =========================================
+           INSTRUCTION TEXT
+           ========================================= */
+
+        .instruction-text {
+
+            margin:
+                0;
+
+            font-family:
+                "DM Sans",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    14px,
+                    1.7vw,
+                    16px
+                );
+
+            font-weight:
+                400;
+
+            line-height:
+                1.65;
+
+            color:
+                var(--color-gray-700);
+        }
+
+
+
+        /* =========================================
+           VIDEO WRAPPER
+           ========================================= */
+
+        .video-wrapper {
+
+            width: 100%;
+
+            max-width:
+                1000px;
+
+            margin:
+                0 auto;
+        }
+
+
+
+        /* =========================================
+           VIDEO CONTAINER
+           ========================================= */
+
+        .video-container {
+
+            position: relative;
+
+            width: 100%;
+
+            aspect-ratio:
+                16 / 9;
+
+            overflow: hidden;
+
+            background:
+                var(--color-gray-100);
+
+            border:
+                1px solid
+                var(--color-gray-200);
+
+            border-radius:
+                var(--radius-lg);
+
+            box-shadow:
+                var(--shadow-md);
+        }
+
+
+
+        /* =========================================
+           VIDEO IFRAME
+           ========================================= */
+
+        .video-container iframe {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+        }
+
+
+
+        /* =========================================
+           VIDEO DESCRIPTION
+           ========================================= */
+
+        .video-description {
+
+            margin:
+                var(--space-4)
+                auto
+                0;
+
+            max-width:
+                700px;
+
+            text-align:
+                center;
+
+            font-family:
+                "DM Sans",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    13px,
+                    1.7vw,
+                    16px
+                );
+
+            line-height:
+                1.6;
+
+            color:
+                var(--color-gray-500);
+        }
+
+
+
+        /* =========================================
+           IMPORTANT NOTE
+           ========================================= */
+
+        .important-note {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            width: 100%;
+
+            max-width:
+                1000px;
+
+            margin:
+                0 auto;
+
+            padding:
+                clamp(
+                    20px,
+                    4vw,
+                    32px
+                );
+
+            background:
+                var(--color-gray-100);
+
+            border:
+                1px solid
+                var(--color-gray-200);
+
+            border-left:
+                5px solid
+                var(--color-primary);
+
+            border-radius:
+                var(--radius-md);
+
+            box-shadow:
+                var(--shadow-sm);
+        }
+
+
+
+        /* =========================================
+           NOTE ICON
+           ========================================= */
+
+        .note-icon {
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            width:
+                40px;
+
+            height:
+                40px;
+
+            margin-right:
+                var(--space-4);
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                20px;
+
+            font-weight:
+                700;
+
+            color:
+                var(--color-white);
+
+            background:
+                var(--color-primary);
+
+            border-radius:
+                var(--radius-round);
+        }
+
+
+
+        /* =========================================
+           NOTE CONTENT
+           ========================================= */
+
+        .note-content {
+
+            flex: 1;
+
+            min-width: 0;
+        }
+
+
+
+        .note-content strong {
+
+            display: block;
+
+            margin-bottom:
+                var(--space-1);
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    16px,
+                    2vw,
+                    19px
+                );
+
+            font-weight:
+                700;
+        }
+
+
+
+        .note-content p {
+
+            margin: 0;
+
+            font-family:
+                "DM Sans",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    14px,
+                    1.7vw,
+                    16px
+                );
+
+            line-height:
+                1.65;
+
+            color:
+                var(--color-gray-700);
+        }
+
+
+
+        /* =========================================
+           BUTTON
+           ========================================= */
+
+        .tool-button {
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height:
+                46px;
+
+            padding:
+                0.75rem
+                1.5rem;
+
+            font-family:
+                "DM Sans",
+                sans-serif;
+
+            font-size:
+                15px;
+
+            font-weight:
+                700;
+
+            color:
+                var(--color-white);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--color-primary),
+                    var(--color-primary-dark)
+                );
+
+            border:
+                1px solid
+                var(--color-primary);
+
+            border-radius:
+                var(--radius-md);
+
+            text-decoration:
+                none;
+
+            cursor:
+                pointer;
+
+            box-shadow:
+                0 6px 18px
+                rgba(
+                    132,
+                    105,
+                    222,
+                    0.22
+                );
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+
+        .tool-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(
+                    132,
+                    105,
+                    222,
+                    0.30
+                );
+        }
+
+
+
+        .tool-button:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+
+        .tool-button:focus-visible {
+
+            outline:
+                3px solid
+                rgba(
+                    132,
+                    105,
+                    222,
+                    0.35
+                );
+
+            outline-offset:
+                3px;
+        }
+
+
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+
+        .tool-footer {
+
+            width: 100%;
+
+            padding:
+                clamp(
+                    28px,
+                    5vw,
+                    40px
+                )
+                var(--side-padding);
+
+            text-align:
+                center;
+
+            background:
+                var(--color-gray-100);
+
+            border-top:
+                1px solid
+                var(--color-gray-200);
+
+            font-family:
+                "DM Sans",
+                sans-serif;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.5;
+
+            color:
+                var(--color-gray-500);
+        }
+
+
+
+        .tool-footer p {
+
+            margin: 0;
+        }
+
+
+
+        /* =========================================
+           TABLET
+           ========================================= */
+
+        @media (max-width: 900px) {
+
+            .instructions {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .tool-container {
+
+                padding-top:
+                    64px;
+
+                padding-bottom:
+                    64px;
+            }
+        }
+
+
+
+        /* =========================================
+           MOBILE
+           ========================================= */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                font-size:
+                    15px;
+            }
+
+
+            .tool-container {
+
+                padding:
+                    44px
+                    16px
+                    48px;
+            }
+
+
+            .tool-header {
+
+                margin-bottom:
+                    56px;
+            }
+
+
+            .tool-label {
+
+                margin-bottom:
+                    14px;
+
+                padding:
+                    7px 12px;
+
+                font-size:
+                    10px;
+
+                letter-spacing:
+                    1.2px;
+            }
+
+
+            .tool-title {
+
+                font-size:
+                    clamp(
+                        34px,
+                        11vw,
+                        46px
+                    );
+
+                letter-spacing:
+                    -1.5px;
+            }
+
+
+            .tool-description {
+
+                font-size:
+                    15px;
+
+                line-height:
+                    1.6;
+            }
+
+
+            .tool-section {
+
+                margin-bottom:
+                    60px;
+            }
+
+
+            .section-heading {
+
+                margin-bottom:
+                    24px;
+
+                font-size:
+                    28px;
+            }
+
+
+            .instructions {
+
+                gap:
+                    14px;
+            }
+
+
+            .instruction-card {
+
+                padding:
+                    20px;
+
+                border-radius:
+                    14px;
+            }
+
+
+            .instruction-number {
+
+                width:
+                    40px;
+
+                height:
+                    40px;
+
+                margin-right:
+                    14px;
+
+                font-size:
+                    16px;
+            }
+
+
+            .instruction-title {
+
+                font-size:
+                    19px;
+            }
+
+
+            .instruction-text {
+
+                font-size:
+                    14px;
+
+                line-height:
+                    1.6;
+            }
+
+
+            .video-container {
+
+                border-radius:
+                    12px;
+            }
+
+
+            .video-description {
+
+                font-size:
+                    13px;
+            }
+
+
+            .important-note {
+
+                padding:
+                    20px;
+
+                border-left-width:
+                    4px;
+            }
+
+
+            .note-icon {
+
+                width:
+                    36px;
+
+                height:
+                    36px;
+
+                margin-right:
+                    12px;
+
+                font-size:
+                    18px;
+            }
+
+
+            .note-content strong {
+
+                font-size:
+                    16px;
+            }
+
+
+            .note-content p {
+
+                font-size:
+                    14px;
+            }
+
+
+            .tool-footer {
+
+                padding:
+                    28px 16px;
+            }
+        }
+
+
+
+        /* =========================================
+           VERY SMALL PHONES
+           ========================================= */
+
+        @media (max-width: 420px) {
+
+            .tool-container {
+
+                padding-left:
+                    14px;
+
+                padding-right:
+                    14px;
+            }
+
+
+            .tool-title {
+
+                font-size:
+                    34px;
+            }
+
+
+            .instruction-card {
+
+                flex-direction:
+                    column;
+
+                padding:
+                    18px;
+            }
+
+
+            .instruction-number {
+
+                margin-right:
+                    0;
+
+                margin-bottom:
+                    14px;
+            }
+
+
+            .important-note {
+
+                flex-direction:
+                    column;
+
+                padding:
+                    18px;
+            }
+
+
+            .note-icon {
+
+                margin-right:
+                    0;
+
+                margin-bottom:
+                    12px;
+            }
+        }
+
+
+
+        /* =========================================
+           REDUCED MOTION
+           ========================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+
+                scroll-behavior:
+                    auto;
+            }
+
+
+            *,
+            *::before,
+            *::after {
+
+                transition:
+                    none !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="tool-page">
+
+
+        <!-- =====================================
+             MAIN CONTENT
+             ===================================== -->
+
+        <main class="tool-container">
+
+
+            <!-- =====================================
+                 HEADER
+                 ===================================== -->
+
+            <header class="tool-header">
+
+                <!-- LABEL -->
+
+                <div class="tool-label">
+                    Device Guide
+                </div>
+
+
+                <!-- TITLE -->
+
+                <h1 class="tool-title">
+                    Tool Name
+                </h1>
+
+
+                <!-- DESCRIPTION -->
+
+                <p class="tool-description">
+                    A simple guide on how to use this tool.
+                    Follow the steps below to get started
+                    and make the most out of the device.
+                </p>
+
+            </header>
+
+
+
+            <!-- =====================================
+                 INSTRUCTIONS
+                 ===================================== -->
+
+            <section class="tool-section">
+
+                <h2 class="section-heading">
+                    How to Use
+                </h2>
+
+
+                <div class="instructions">
+
+
+                    <!-- ===============================
+                         STEP 1
+                         =============================== -->
+
+                    <div class="instruction-card">
+
+                        <div class="instruction-number">
+                            1
+                        </div>
+
+                        <div class="instruction-content">
+
+                            <h3 class="instruction-title">
+                                Open the Tool
+                            </h3>
+
+                            <p class="instruction-text">
+                                Open the tool using your preferred
+                                browser and access the main page.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ===============================
+                         STEP 2
+                         =============================== -->
+
+                    <div class="instruction-card">
+
+                        <div class="instruction-number">
+                            2
+                        </div>
+
+                        <div class="instruction-content">
+
+                            <h3 class="instruction-title">
+                                Choose an Option
+                            </h3>
+
+                            <p class="instruction-text">
+                                Select the option or feature that
+                                you want to use.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ===============================
+                         STEP 3
+                         =============================== -->
+
+                    <div class="instruction-card">
+
+                        <div class="instruction-number">
+                            3
+                        </div>
+
+                        <div class="instruction-content">
+
+                            <h3 class="instruction-title">
+                                Enter Your Information
+                            </h3>
+
+                            <p class="instruction-text">
+                                Provide the necessary information
+                                required by the tool.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ===============================
+                         STEP 4
+                         =============================== -->
+
+                    <div class="instruction-card">
+
+                        <div class="instruction-number">
+                            4
+                        </div>
+
+                        <div class="instruction-content">
+
+                            <h3 class="instruction-title">
+                                Use the Tool
+                            </h3>
+
+                            <p class="instruction-text">
+                                Click the appropriate button and
+                                follow the instructions displayed
+                                on the screen.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ===============================
+                         STEP 5
+                         =============================== -->
+
+                    <div class="instruction-card">
+
+                        <div class="instruction-number">
+                            5
+                        </div>
+
+                        <div class="instruction-content">
+
+                            <h3 class="instruction-title">
+                                Review the Result
+                            </h3>
+
+                            <p class="instruction-text">
+                                Check the output provided by the
+                                tool and make any necessary changes.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 VIDEO
+                 ===================================== -->
+
+            <section class="tool-section">
+
+                <h2 class="section-heading">
+                    Video Tutorial
+                </h2>
+
+
+                <div class="video-wrapper">
+
+                    <div class="video-container">
+
+                        <!--
+                            ====================================
+                            CHANGE ONLY THE VIDEO ID
+                            ====================================
+
+                            Example YouTube URL:
+
+                            https://www.youtube.com/watch?v=ABC123
+
+                            Change the iframe URL to:
+
+                            https://www.youtube.com/embed/ABC123
+                        -->
+
+                        <iframe
+                            src="https://www.youtube.com/embed/VIDEO_ID"
+                            title="Tool Tutorial"
+                            loading="lazy"
+                            allow="
+                                accelerometer;
+                                autoplay;
+                                clipboard-write;
+                                encrypted-media;
+                                gyroscope;
+                                picture-in-picture;
+                                web-share
+                            "
+                            allowfullscreen>
+                        </iframe>
+
+                    </div>
+
+
+                    <p class="video-description">
+                        Watch the video tutorial for a visual
+                        demonstration of how to use the device.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 IMPORTANT NOTE
+                 ===================================== -->
+
+            <section class="tool-section">
+
+                <h2 class="section-heading">
+                    Important Note
+                </h2>
+
+
+                <div class="important-note">
+
+                    <div class="note-icon">
+                        !
+                    </div>
+
+
+                    <div class="note-content">
+
+                        <strong>
+                            Remember:
+                        </strong>
+
+                        <p>
+                            Replace this text with any important
+                            information, reminders, or tips about
+                            using the tool.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+
+
+        <!-- =====================================
+             FOOTER
+             ===================================== -->
+
+        <footer class="tool-footer">
+
+            <p>
+                Tool Guide • Educational Resource
+            </p>
+
+        </footer>
+
+
+    </div>
+
+</body>
+
+</html>
