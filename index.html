@@ -4,24 +4,45 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Tool Guide</title>
+    <title>Tool Guide — Instructions</title>
 
-    <!-- Fonts -->
+
+    <!-- FONT -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link
         href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
         rel="stylesheet"
     >
 
+
     <style>
 
         /* =====================================
-           BASIC
+           VARIABLES
+        ===================================== */
+
+        :root {
+            --bg: #0b1014;
+            --surface: #11181d;
+            --text: #f2f4f5;
+            --muted: #8d989e;
+            --line: #2a343a;
+
+            --cyan: #63e6e2;
+            --lime: #d6f36a;
+        }
+
+
+        /* =====================================
+           RESET
         ===================================== */
 
         * {
@@ -35,72 +56,111 @@
         body {
             margin: 0;
 
+            background: var(--bg);
+            color: var(--text);
+
             font-family: "Archivo", sans-serif;
-
-            color: #f2f4f5;
-
-            background: #0b1014;
 
             overflow-x: hidden;
         }
 
-        img {
-            display: block;
-            max-width: 100%;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
 
         /* =====================================
-           COLORS
-        ===================================== */
-
-        :root {
-            --bg: #0b1014;
-            --surface: #11181d;
-            --surface-light: #172127;
-
-            --text: #f2f4f5;
-            --muted: #8d989e;
-
-            --line: #2a343a;
-
-            --cyan: #63e6e2;
-            --lime: #d6f36a;
-            --orange: #ff8c42;
-        }
-
-
-        /* =====================================
-           TOP NAV
+           NAVIGATION
         ===================================== */
 
         .nav {
+
             display: flex;
 
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
 
             padding: 20px 5vw;
 
             border-bottom: 1px solid var(--line);
 
+        }
+
+
+        .nav-logo {
+
+            color: var(--cyan);
+
             font-family: "IBM Plex Mono", monospace;
 
             font-size: 11px;
+            font-weight: 600;
+
+            text-transform: uppercase;
+            letter-spacing: .08em;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 30px;
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 10px;
 
             text-transform: uppercase;
 
-            letter-spacing: .08em;
+            letter-spacing: .07em;
+
         }
 
-        .nav-logo {
+
+        .nav-links a {
+
+            position: relative;
+
+            padding: 5px 0;
+
+            color: var(--muted);
+
+            transition: color .2s ease;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: var(--text);
+
+        }
+
+
+        .nav-links a.active {
+
             color: var(--cyan);
 
-            font-weight: 600;
         }
 
-        .nav-status {
-            color: var(--muted);
+
+        .nav-links a.active::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: -6px;
+
+            height: 2px;
+
+            background: var(--cyan);
+
         }
 
 
@@ -109,11 +169,15 @@
         ===================================== */
 
         main {
+
+            width: 100%;
+
             max-width: 1300px;
 
             margin: auto;
 
             padding: 80px 50px 120px;
+
         }
 
 
@@ -122,6 +186,7 @@
         ===================================== */
 
         .intro {
+
             display: grid;
 
             grid-template-columns: 1.5fr 1fr;
@@ -131,52 +196,54 @@
             align-items: end;
 
             margin-bottom: 90px;
+
         }
 
+
         .intro-label {
+
             margin-bottom: 20px;
+
+            color: var(--cyan);
 
             font-family: "IBM Plex Mono", monospace;
 
-            font-size: 12px;
-
-            color: var(--cyan);
+            font-size: 11px;
 
             text-transform: uppercase;
 
             letter-spacing: .12em;
+
         }
 
+
         h1 {
-            max-width: 850px;
 
             margin: 0;
 
-            font-size: clamp(
-                55px,
-                9vw,
-                125px
-            );
+            font-size: clamp(55px, 9vw, 125px);
 
             line-height: .86;
 
             letter-spacing: -.07em;
 
             font-weight: 800;
+
         }
 
+
         .intro-text {
-            max-width: 380px;
+
+            max-width: 390px;
 
             margin: 0;
-
-            padding-bottom: 5px;
 
             color: var(--muted);
 
             font-size: 16px;
 
             line-height: 1.7;
+
         }
 
 
@@ -185,14 +252,12 @@
         ===================================== */
 
         .hero {
+
             position: relative;
 
             width: 100%;
 
-            height: min(
-                50vw,
-                560px
-            );
+            height: min(50vw, 560px);
 
             margin-bottom: 120px;
 
@@ -201,18 +266,22 @@
             background: var(--surface);
 
             border: 1px solid var(--line);
+
         }
 
+
         .hero img {
+
             width: 100%;
             height: 100%;
 
             object-fit: cover;
 
-            object-position: center;
         }
 
+
         .hero-label {
+
             position: absolute;
 
             left: 25px;
@@ -220,17 +289,18 @@
 
             padding: 9px 12px;
 
-            color: #0b1014;
-
             background: var(--cyan);
+
+            color: var(--bg);
 
             font-family: "IBM Plex Mono", monospace;
 
-            font-size: 10px;
+            font-size: 9px;
 
             text-transform: uppercase;
 
             letter-spacing: .08em;
+
         }
 
 
@@ -239,6 +309,7 @@
         ===================================== */
 
         .section {
+
             display: grid;
 
             grid-template-columns: 180px 1fr;
@@ -246,54 +317,52 @@
             gap: 60px;
 
             margin-bottom: 130px;
+
         }
 
-        .section-side {
-            position: relative;
-        }
 
         .section-side::before {
+
             content: "";
 
-            position: absolute;
-
-            top: 8px;
-            left: 0;
-
-            width: 30px;
-            height: 2px;
-
-            background: var(--cyan);
-        }
-
-        .section-side span {
             display: block;
 
-            padding-top: 22px;
+            width: 30px;
+
+            height: 2px;
+
+            margin-bottom: 15px;
+
+            background: var(--cyan);
+
+        }
+
+
+        .section-side span {
+
+            color: var(--muted);
 
             font-family: "IBM Plex Mono", monospace;
 
-            font-size: 11px;
-
-            color: var(--muted);
+            font-size: 10px;
 
             text-transform: uppercase;
 
             letter-spacing: .08em;
+
         }
 
+
         .section-content h2 {
+
             margin: 0 0 45px;
 
-            font-size: clamp(
-                35px,
-                5vw,
-                60px
-            );
+            font-size: clamp(35px, 5vw, 60px);
 
             line-height: .95;
 
             letter-spacing: -.05em;
+
         }
 
 
@@ -302,10 +371,14 @@
         ===================================== */
 
         .steps {
+
             border-top: 1px solid var(--line);
+
         }
 
+
         .step {
+
             display: grid;
 
             grid-template-columns: 80px 1fr;
@@ -317,21 +390,30 @@
             border-bottom: 1px solid var(--line);
 
             transition: padding .2s ease;
+
         }
+
 
         .step:hover {
+
             padding-left: 15px;
+
         }
+
 
         .step-number {
-            font-family: "IBM Plex Mono", monospace;
-
-            font-size: 13px;
 
             color: var(--cyan);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 12px;
+
         }
 
+
         .step h3 {
+
             margin: 0 0 10px;
 
             font-size: 25px;
@@ -339,9 +421,12 @@
             line-height: 1.1;
 
             letter-spacing: -.03em;
+
         }
 
+
         .step p {
+
             max-width: 650px;
 
             margin: 0;
@@ -351,43 +436,16 @@
             font-size: 15px;
 
             line-height: 1.65;
+
         }
 
 
         /* =====================================
-           FEATURED STEP
-        ===================================== */
-
-        .step:nth-child(3) {
-            position: relative;
-
-            padding-top: 45px;
-            padding-bottom: 45px;
-        }
-
-        .step:nth-child(3)::after {
-            content: "KEY STEP";
-
-            position: absolute;
-
-            top: 20px;
-            right: 0;
-
-            font-family: "IBM Plex Mono", monospace;
-
-            font-size: 9px;
-
-            color: var(--lime);
-
-            letter-spacing: .1em;
-        }
-
-
-        /* =====================================
-           VIDEO SECTION
+           VIDEO
         ===================================== */
 
         .video-section {
+
             display: grid;
 
             grid-template-columns: 180px 1fr;
@@ -395,13 +453,19 @@
             gap: 60px;
 
             margin-bottom: 130px;
+
         }
+
 
         .video-wrapper {
+
             max-width: 900px;
+
         }
 
+
         .video {
+
             position: relative;
 
             width: 100%;
@@ -413,9 +477,12 @@
             background: #000;
 
             border: 1px solid var(--line);
+
         }
 
+
         .video iframe {
+
             position: absolute;
 
             inset: 0;
@@ -424,20 +491,22 @@
             height: 100%;
 
             border: 0;
+
         }
 
+
         .video-caption {
-            margin: 15px 0 0;
+
+            margin-top: 15px;
 
             color: var(--muted);
 
             font-family: "IBM Plex Mono", monospace;
 
-            font-size: 10px;
+            font-size: 9px;
 
             text-transform: uppercase;
 
-            letter-spacing: .06em;
         }
 
 
@@ -446,14 +515,18 @@
         ===================================== */
 
         .note-section {
+
             display: grid;
 
             grid-template-columns: 180px 1fr;
 
             gap: 60px;
+
         }
 
+
         .note {
+
             display: grid;
 
             grid-template-columns: 100px 1fr;
@@ -463,36 +536,48 @@
             border: 1px solid var(--lime);
 
             background: var(--surface);
+
         }
 
+
         .note-symbol {
+
             display: flex;
 
             align-items: center;
             justify-content: center;
 
-            color: var(--bg);
-
             background: var(--lime);
+
+            color: var(--bg);
 
             font-size: 35px;
 
             font-weight: 800;
+
         }
+
 
         .note-content {
+
             padding: 30px;
+
         }
 
+
         .note-content strong {
+
             display: block;
 
             margin-bottom: 10px;
 
             font-size: 21px;
+
         }
 
+
         .note-content p {
+
             margin: 0;
 
             color: var(--muted);
@@ -500,6 +585,7 @@
             font-size: 14px;
 
             line-height: 1.65;
+
         }
 
 
@@ -508,6 +594,7 @@
         ===================================== */
 
         footer {
+
             display: flex;
 
             justify-content: space-between;
@@ -520,11 +607,12 @@
 
             font-family: "IBM Plex Mono", monospace;
 
-            font-size: 10px;
+            font-size: 9px;
 
             text-transform: uppercase;
 
             letter-spacing: .07em;
+
         }
 
 
@@ -535,31 +623,36 @@
         @media (max-width: 850px) {
 
             main {
+
                 padding: 60px 30px 90px;
+
             }
 
+
             .intro {
+
                 grid-template-columns: 1fr;
 
                 gap: 30px;
+
             }
 
-            .intro-text {
-                max-width: 600px;
-            }
 
             .section,
             .video-section,
             .note-section {
+
                 grid-template-columns: 120px 1fr;
 
                 gap: 35px;
+
             }
 
+
             .hero {
+
                 height: 350px;
 
-                margin-bottom: 90px;
             }
 
         }
@@ -572,61 +665,72 @@
         @media (max-width: 600px) {
 
             .nav {
+
+                align-items: flex-start;
+
+                gap: 20px;
+
                 padding: 15px 16px;
 
-                font-size: 9px;
+            }
+
+
+            .nav-links {
+
+                gap: 15px;
+
+                font-size: 8px;
+
             }
 
 
             main {
+
                 padding: 50px 16px 75px;
+
             }
 
 
-            /* Intro */
-
             .intro {
+
                 gap: 25px;
 
                 margin-bottom: 50px;
+
             }
 
-            .intro-label {
-                margin-bottom: 15px;
-
-                font-size: 10px;
-            }
 
             h1 {
+
                 font-size: 55px;
 
-                line-height: .88;
             }
+
 
             .intro-text {
+
                 font-size: 14px;
 
-                line-height: 1.6;
             }
 
 
-            /* Hero */
-
             .hero {
+
                 height: 230px;
 
                 margin-bottom: 75px;
+
             }
+
 
             .hero-label {
+
                 left: 15px;
+
                 bottom: 15px;
 
-                font-size: 8px;
             }
 
-
-            /* Sections */
 
             .section,
             .video-section,
@@ -635,131 +739,123 @@
                 display: block;
 
                 margin-bottom: 80px;
+
             }
+
 
             .section-side {
+
                 margin-bottom: 25px;
+
             }
 
-            .section-side::before {
-                top: 0;
-            }
-
-            .section-side span {
-                padding-top: 14px;
-            }
 
             .section-content h2 {
+
                 margin-bottom: 30px;
 
                 font-size: 38px;
+
             }
 
 
-            /* Steps */
-
             .step {
+
                 grid-template-columns: 45px 1fr;
 
                 gap: 12px;
 
                 padding: 25px 0;
+
             }
+
 
             .step:hover {
+
                 padding-left: 0;
+
             }
+
 
             .step h3 {
+
                 font-size: 21px;
+
             }
+
 
             .step p {
+
                 font-size: 14px;
+
             }
 
-            .step:nth-child(3) {
-                padding-top: 40px;
-                padding-bottom: 40px;
-            }
-
-            .step:nth-child(3)::after {
-                top: 15px;
-                right: 0;
-
-                font-size: 8px;
-            }
-
-
-            /* Video */
 
             .video-section {
+
                 margin-top: 80px;
+
             }
 
-            .video {
-                border-color: var(--line);
-            }
-
-            .video-caption {
-                font-size: 9px;
-            }
-
-
-            /* Note */
 
             .note {
+
                 grid-template-columns: 55px 1fr;
+
             }
+
 
             .note-symbol {
+
                 font-size: 23px;
+
             }
+
 
             .note-content {
+
                 padding: 20px;
+
             }
+
 
             .note-content strong {
+
                 font-size: 17px;
+
             }
 
-            .note-content p {
-                font-size: 13px;
-            }
-
-
-            /* Footer */
 
             footer {
+
                 flex-direction: column;
 
                 gap: 8px;
 
                 padding: 20px 16px;
 
-                font-size: 8px;
             }
 
         }
 
 
         /* =====================================
-           VERY SMALL PHONES
+           SMALL PHONES
         ===================================== */
 
         @media (max-width: 380px) {
 
             h1 {
+
                 font-size: 47px;
+
             }
+
 
             .hero {
-                height: 195px;
-            }
 
-            .section-content h2 {
-                font-size: 34px;
+                height: 195px;
+
             }
 
         }
@@ -772,7 +868,11 @@
 <body>
 
 
-  <nav class="nav">
+    <!-- =====================================
+         NAVIGATION
+    ===================================== -->
+
+    <nav class="nav">
 
         <a href="index.html" class="nav-logo">
             TOOL / GUIDE
@@ -803,8 +903,8 @@
 
 
         <!-- =====================================
-             INTRO
-        ====================================== -->
+             INTRODUCTION
+        ===================================== -->
 
         <header class="intro">
 
@@ -813,6 +913,7 @@
                 <div class="intro-label">
                     Instructions
                 </div>
+
 
                 <h1>
                     Super<br>
@@ -836,30 +937,19 @@
 
 
         <!-- =====================================
-             HERO IMAGE
-        ====================================== -->
+             HERO
+        ===================================== -->
 
         <div class="hero">
 
-            <!--
-                Put your image here:
-
-                images/hero.jpg
-
-                Folder structure:
-
-                index.html
-                images/
-                    hero.jpg
-            -->
-
             <img
                 src="image/hero.png"
-                alt="Tool illustration"
+                alt="Tool"
             >
 
+
             <div class="hero-label">
-                Tool Overview
+                Device Overview
             </div>
 
         </div>
@@ -868,7 +958,7 @@
 
         <!-- =====================================
              HOW TO USE
-        ====================================== -->
+        ===================================== -->
 
         <section class="section">
 
@@ -892,8 +982,6 @@
                 <div class="steps">
 
 
-                    <!-- STEP 01 -->
-
                     <article class="step">
 
                         <div class="step-number">
@@ -903,20 +991,17 @@
                         <div>
 
                             <h3>
-                                no info yet papo hehez 
+                                isip na po tayo ng ilalagay dito
                             </h3>
 
                             <p>
-                               no info yet papo hehez 
+                               isip na po tayo ng ilalagay dito
                             </p>
 
                         </div>
 
                     </article>
 
-
-
-                    <!-- STEP 02 -->
 
                     <article class="step">
 
@@ -927,20 +1012,17 @@
                         <div>
 
                             <h3>
-                                no info yet papo hehez 
+                                isip na po tayo ng ilalagay dito
                             </h3>
 
                             <p>
-                                no info yet papo hehez 
+                               isip na po tayo ng ilalagay dito
                             </p>
 
                         </div>
 
                     </article>
 
-
-
-                    <!-- STEP 03 -->
 
                     <article class="step">
 
@@ -951,20 +1033,17 @@
                         <div>
 
                             <h3>
-                                no info yet papo hehez 
+                                isip na po tayo ng ilalagay dito
                             </h3>
 
                             <p>
-                               no info yet papo hehez 
+                                isip na po tayo ng ilalagay dito
                             </p>
 
                         </div>
 
                     </article>
 
-
-
-                    <!-- STEP 04 -->
 
                     <article class="step">
 
@@ -975,20 +1054,17 @@
                         <div>
 
                             <h3>
-                               no info yet papo hehez 
+                                isip na po tayo ng ilalagay dito
                             </h3>
 
                             <p>
-                               no info yet papo hehez 
+                                Cisip na po tayo ng ilalagay dito
                             </p>
 
                         </div>
 
                     </article>
 
-
-
-                    <!-- STEP 05 -->
 
                     <article class="step">
 
@@ -999,11 +1075,11 @@
                         <div>
 
                             <h3>
-                               no info yet papo hehez 
+                                isip na po tayo ng ilalagay dito
                             </h3>
 
                             <p>
-                                no info yet papo hehez 
+                                isip na po tayo ng ilalagay dito
                             </p>
 
                         </div>
@@ -1021,7 +1097,7 @@
 
         <!-- =====================================
              VIDEO
-        ====================================== -->
+        ===================================== -->
 
         <section class="video-section">
 
@@ -1038,11 +1114,6 @@
             <div class="video-wrapper">
 
                 <div class="video">
-
-                    <!--
-                        Replace VIDEO_ID with
-                        your YouTube video ID.
-                    -->
 
                     <iframe
                         src="https://www.youtube.com/embed/VIDEO_ID"
@@ -1065,7 +1136,7 @@
 
         <!-- =====================================
              IMPORTANT NOTE
-        ====================================== -->
+        ===================================== -->
 
         <section class="note-section">
 
@@ -1092,8 +1163,11 @@
                         Remember this.
                     </strong>
 
+
                     <p>
-                        Ang nagmamataas ay ibinababa
+
+                        ang nag mamataas ay ibinababa
+
                     </p>
 
                 </div>
@@ -1109,7 +1183,7 @@
 
     <!-- =====================================
          FOOTER
-    ====================================== -->
+    ===================================== -->
 
     <footer>
 
@@ -1122,6 +1196,11 @@
         </span>
 
     </footer>
+
+
+</body>
+
+</html>
 
 
 </body>
