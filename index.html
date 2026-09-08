@@ -10,11 +10,16 @@
     <title>Tool Instructions</title>
 
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-          content="A simple educational guide explaining how to use a device or tool.">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="A simple educational guide explaining how to use a device or tool."
+    >
 
 
     <!-- =========================================
@@ -23,13 +28,15 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <!--
-        SPACE GROTESK = headings
-        DM SANS = body text
+        SPACE GROTESK = HEADINGS
+        DM SANS = BODY TEXT
     -->
 
     <link
@@ -70,7 +77,7 @@
 
 
             /* ==============================
-               SPACING SYSTEM
+               SPACING
                ============================== */
 
             --space-1: 4px;
@@ -87,7 +94,7 @@
 
 
             /* ==============================
-               RADIUS SYSTEM
+               RADIUS
                ============================== */
 
             --radius-sm: 6px;
@@ -103,11 +110,12 @@
 
             --max-width: 1200px;
 
-            --side-padding: clamp(
-                16px,
-                5vw,
-                48px
-            );
+            --side-padding:
+                clamp(
+                    16px,
+                    5vw,
+                    48px
+                );
 
 
             /* ==============================
@@ -139,11 +147,13 @@
 
         html {
             scroll-behavior: smooth;
+
             -webkit-text-size-adjust: 100%;
         }
 
 
         body {
+
             margin: 0;
             padding: 0;
 
@@ -157,9 +167,11 @@
                 sans-serif;
 
             font-size: 16px;
+
             line-height: 1.6;
 
-            color: var(--color-black);
+            color:
+                var(--color-black);
 
             background:
                 var(--color-white);
@@ -171,7 +183,9 @@
         img,
         video,
         iframe {
+
             display: block;
+
             max-width: 100%;
         }
 
@@ -180,11 +194,13 @@
         input,
         textarea,
         select {
+
             font: inherit;
         }
 
 
         a {
+
             color: inherit;
         }
 
@@ -195,7 +211,9 @@
            ========================================= */
 
         .tool-page {
+
             width: 100%;
+
             min-height: 100vh;
 
             background:
@@ -237,9 +255,10 @@
 
             margin:
                 0 auto
-                clamp(48px, 7vw, 80px);
+                clamp(40px, 7vw, 72px);
 
-            text-align: center;
+            text-align:
+                center;
         }
 
 
@@ -253,6 +272,7 @@
             display: inline-flex;
 
             align-items: center;
+
             justify-content: center;
 
             margin-bottom:
@@ -268,9 +288,11 @@
             font-size:
                 clamp(11px, 1.5vw, 13px);
 
-            font-weight: 700;
+            font-weight:
+                700;
 
-            line-height: 1;
+            line-height:
+                1;
 
             color:
                 var(--color-primary-dark);
@@ -371,6 +393,79 @@
 
 
         /* =========================================
+           FULL-WIDTH HERO IMAGE
+           ========================================= */
+
+        .hero-image {
+
+            position: relative;
+
+            width: 100vw;
+
+            /*
+                Break out of the centered
+                content container.
+            */
+
+            margin-left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            /*
+                Responsive height.
+
+                Desktop:
+                max 420px
+
+                Mobile:
+                controlled below
+            */
+
+            height:
+                clamp(
+                    200px,
+                    35vw,
+                    420px
+                );
+
+            margin-top:
+                40px;
+
+            margin-bottom:
+                80px;
+
+            overflow:
+                hidden;
+
+            background:
+                var(--color-gray-100);
+        }
+
+
+
+        /* =========================================
+           HERO IMAGE ITSELF
+           ========================================= */
+
+        .hero-image img {
+
+            display: block;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit:
+                cover;
+
+            object-position:
+                center center;
+        }
+
+
+
+        /* =========================================
            GENERAL SECTIONS
            ========================================= */
 
@@ -460,7 +555,8 @@
 
             display: flex;
 
-            align-items: flex-start;
+            align-items:
+                flex-start;
 
             width: 100%;
 
@@ -525,8 +621,11 @@
 
             display: flex;
 
-            align-items: center;
-            justify-content: center;
+            align-items:
+                center;
+
+            justify-content:
+                center;
 
             flex-shrink: 0;
 
@@ -694,14 +793,16 @@
 
         .video-container {
 
-            position: relative;
+            position:
+                relative;
 
             width: 100%;
 
             aspect-ratio:
                 16 / 9;
 
-            overflow: hidden;
+            overflow:
+                hidden;
 
             background:
                 var(--color-gray-100);
@@ -725,14 +826,20 @@
 
         .video-container iframe {
 
-            position: absolute;
+            position:
+                absolute;
 
-            inset: 0;
+            inset:
+                0;
 
-            width: 100%;
-            height: 100%;
+            width:
+                100%;
 
-            border: 0;
+            height:
+                100%;
+
+            border:
+                0;
         }
 
 
@@ -780,9 +887,11 @@
 
         .important-note {
 
-            display: flex;
+            display:
+                flex;
 
-            align-items: flex-start;
+            align-items:
+                flex-start;
 
             width: 100%;
 
@@ -825,12 +934,17 @@
 
         .note-icon {
 
-            display: flex;
+            display:
+                flex;
 
-            align-items: center;
-            justify-content: center;
+            align-items:
+                center;
 
-            flex-shrink: 0;
+            justify-content:
+                center;
+
+            flex-shrink:
+                0;
 
             width:
                 40px;
@@ -869,16 +983,19 @@
 
         .note-content {
 
-            flex: 1;
+            flex:
+                1;
 
-            min-width: 0;
+            min-width:
+                0;
         }
 
 
 
         .note-content strong {
 
-            display: block;
+            display:
+                block;
 
             margin-bottom:
                 var(--space-1);
@@ -902,7 +1019,8 @@
 
         .note-content p {
 
-            margin: 0;
+            margin:
+                0;
 
             font-family:
                 "DM Sans",
@@ -930,10 +1048,14 @@
 
         .tool-button {
 
-            display: inline-flex;
+            display:
+                inline-flex;
 
-            align-items: center;
-            justify-content: center;
+            align-items:
+                center;
+
+            justify-content:
+                center;
 
             min-height:
                 46px;
@@ -1077,7 +1199,8 @@
 
         .tool-footer p {
 
-            margin: 0;
+            margin:
+                0;
         }
 
 
@@ -1105,47 +1228,7 @@
             }
         }
 
-/* =========================================
-   FULL-WIDTH HERO IMAGE
-   ========================================= */
 
-.hero-image {
-
-    width: 100vw;
-
-    margin-left: 50%;
-    transform: translateX(-50%);
-
-    height: clamp(
-        180px,
-        35vw,
-        420px
-    );
-
-    margin-top: 40px;
-    margin-bottom: 80px;
-
-    overflow: hidden;
-
-    background-color:
-        var(--color-gray-100);
-
-    border-radius:
-        0;
-}
-
-
-.hero-image img {
-
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-
-    object-position: center;
-}
 
         /* =========================================
            MOBILE
@@ -1172,7 +1255,7 @@
             .tool-header {
 
                 margin-bottom:
-                    56px;
+                    32px;
             }
 
 
@@ -1213,6 +1296,51 @@
 
                 line-height:
                     1.6;
+            }
+
+
+            /* ==============================
+               MOBILE HERO
+               ============================== */
+
+            .hero-image {
+
+                width:
+                    100vw;
+
+                height:
+                    220px;
+
+                margin-top:
+                    32px;
+
+                margin-bottom:
+                    56px;
+
+                margin-left:
+                    50%;
+
+                transform:
+                    translateX(-50%);
+
+                border-radius:
+                    0;
+            }
+
+
+            .hero-image img {
+
+                width:
+                    100%;
+
+                height:
+                    100%;
+
+                object-fit:
+                    cover;
+
+                object-position:
+                    center center;
             }
 
 
@@ -1369,6 +1497,23 @@
             }
 
 
+            /* ==============================
+               SMALL PHONE HERO
+               ============================== */
+
+            .hero-image {
+
+                height:
+                    190px;
+
+                margin-top:
+                    28px;
+
+                margin-bottom:
+                    48px;
+            }
+
+
             .instruction-card {
 
                 flex-direction:
@@ -1432,54 +1577,6 @@
                     none !important;
             }
         }
-        .hero-image {
-
-    position: relative;
-
-    width: 100vw;
-
-    margin-left: 50%;
-    transform: translateX(-50%);
-
-    height: clamp(
-        280px,
-        45vw,
-        500px
-    );
-
-    overflow: hidden;
-
-    margin-top: 40px;
-    margin-bottom: 80px;
-}
-
-
-.hero-image img {
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-}
-
-
-.hero-image::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.05),
-            rgba(0, 0, 0, 0.35)
-        );
-}
 
     </style>
 
@@ -1504,21 +1601,15 @@
 
             <header class="tool-header">
 
-                <!-- LABEL -->
-
                 <div class="tool-label">
                     Device Guide
                 </div>
 
 
-                <!-- TITLE -->
-
                 <h1 class="tool-title">
                     Tool Name
                 </h1>
 
-
-                <!-- DESCRIPTION -->
 
                 <p class="tool-description">
                     A simple guide on how to use this tool.
@@ -1528,14 +1619,39 @@
 
             </header>
 
- <div class="hero-image">
 
-    <img
-        src="images/hero.jpg"
-        alt="Laboratory equipment"
-    >
 
-</div>
+            <!-- =====================================
+                 FULL-WIDTH HERO IMAGE
+                 ===================================== -->
+
+            <div class="hero-image">
+
+                <!--
+                    IMPORTANT:
+
+                    Put your image inside your GitHub
+                    repository's "images" folder.
+
+                    Example:
+
+                    your-repository/
+                    ├── index.html
+                    └── images/
+                        └── hero.jpg
+
+                    Then keep this path:
+
+                    ./images/hero.jpg
+                -->
+
+                <img
+                    src="./images/hero.jpg"
+                    alt="Tool illustration"
+                >
+
+            </div>
+
 
 
             <!-- =====================================
@@ -1709,15 +1825,14 @@
                     <div class="video-container">
 
                         <!--
-                            ====================================
-                            CHANGE ONLY THE VIDEO ID
-                            ====================================
+                            Replace VIDEO_ID with your
+                            actual YouTube video ID.
 
-                            Example YouTube URL:
+                            Example:
 
                             https://www.youtube.com/watch?v=ABC123
 
-                            Change the iframe URL to:
+                            becomes:
 
                             https://www.youtube.com/embed/ABC123
                         -->
