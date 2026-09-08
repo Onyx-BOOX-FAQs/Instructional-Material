@@ -3,1579 +3,765 @@
 
 <head>
 
-    <!-- =========================================
-         BASIC INFORMATION
-         ========================================= -->
-
-    <title>Tool Instructions</title>
-
     <meta charset="UTF-8">
-
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="description"
-        content="A simple educational guide explaining how to use a device or tool."
-    >
+    <title>Tool Guide</title>
 
-
-    <!-- =========================================
-         FONTS
-         ========================================= -->
-
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <!--
-        SPACE GROTESK = HEADINGS
-        DM SANS = BODY TEXT
-    -->
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
         rel="stylesheet"
     >
 
-
-    <!-- =========================================
-         STYLING
-         ========================================= -->
-
     <style>
 
-        /* =========================================
-           ROOT VARIABLES
-           ========================================= */
+        /* =====================================
+           BASIC
+        ===================================== */
 
-        :root {
-
-            /* ==============================
-               COLOR SYSTEM
-               ============================== */
-
-            --color-black: #0b0b0f;
-            --color-white: #ffffff;
-
-            --color-gray-50: #fafafa;
-            --color-gray-100: #f4f4f5;
-            --color-gray-200: #e4e4e7;
-            --color-gray-400: #a1a1aa;
-            --color-gray-500: #71717a;
-            --color-gray-700: #3f3f46;
-
-            --color-primary: #8469de;
-            --color-primary-dark: #3a26ef;
-            --color-primary-light: #9a91e2;
-
-
-            /* ==============================
-               SPACING
-               ============================== */
-
-            --space-1: 4px;
-            --space-2: 8px;
-            --space-3: 12px;
-            --space-4: 16px;
-            --space-5: 20px;
-            --space-6: 24px;
-            --space-8: 32px;
-            --space-10: 40px;
-            --space-12: 48px;
-            --space-16: 64px;
-            --space-20: 80px;
-
-
-            /* ==============================
-               RADIUS
-               ============================== */
-
-            --radius-sm: 6px;
-            --radius-md: 10px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-            --radius-round: 999px;
-
-
-            /* ==============================
-               PAGE SETTINGS
-               ============================== */
-
-            --max-width: 1200px;
-
-            --side-padding:
-                clamp(
-                    16px,
-                    5vw,
-                    48px
-                );
-
-
-            /* ==============================
-               SHADOWS
-               ============================== */
-
-            --shadow-sm:
-                0 2px 8px rgba(0, 0, 0, 0.04);
-
-            --shadow-md:
-                0 8px 30px rgba(0, 0, 0, 0.07);
-
-            --shadow-lg:
-                0 15px 40px rgba(0, 0, 0, 0.10);
-        }
-
-
-
-        /* =========================================
-           RESET
-           ========================================= */
-
-        *,
-        *::before,
-        *::after {
+        * {
             box-sizing: border-box;
         }
 
-
         html {
             scroll-behavior: smooth;
-
-            -webkit-text-size-adjust: 100%;
         }
 
-
         body {
-
             margin: 0;
-            padding: 0;
 
-            min-width: 320px;
+            font-family: "Archivo", sans-serif;
 
-            font-family:
-                "DM Sans",
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
+            color: #f2f4f5;
 
-            font-size: 16px;
-
-            line-height: 1.6;
-
-            color:
-                var(--color-black);
-
-            background:
-                var(--color-white);
+            background: #0b1014;
 
             overflow-x: hidden;
         }
 
-
-        img,
-        video,
-        iframe {
-
+        img {
             display: block;
-
             max-width: 100%;
         }
 
 
-        button,
-        input,
-        textarea,
-        select {
+        /* =====================================
+           COLORS
+        ===================================== */
 
-            font: inherit;
+        :root {
+            --bg: #0b1014;
+            --surface: #11181d;
+            --surface-light: #172127;
+
+            --text: #f2f4f5;
+            --muted: #8d989e;
+
+            --line: #2a343a;
+
+            --cyan: #63e6e2;
+            --lime: #d6f36a;
+            --orange: #ff8c42;
         }
 
 
-        a {
+        /* =====================================
+           TOP NAV
+        ===================================== */
 
-            color: inherit;
-        }
+        .nav {
+            display: flex;
 
-
-
-        /* =========================================
-           MAIN PAGE
-           ========================================= */
-
-        .tool-page {
-
-            width: 100%;
-
-            min-height: 100vh;
-
-            background:
-                var(--color-white);
-        }
-
-
-
-        /* =========================================
-           MAIN CONTENT CONTAINER
-           ========================================= */
-
-        .tool-container {
-
-            width: 100%;
-
-            max-width:
-                var(--max-width);
-
-            margin:
-                0 auto;
-
-            padding:
-                clamp(48px, 8vw, 96px)
-                var(--side-padding);
-        }
-
-
-
-        /* =========================================
-           HEADER
-           ========================================= */
-
-        .tool-header {
-
-            width: 100%;
-
-            max-width: 850px;
-
-            margin:
-                0 auto
-                clamp(40px, 7vw, 72px);
-
-            text-align:
-                center;
-        }
-
-
-
-        /* =========================================
-           LABEL
-           ========================================= */
-
-        .tool-label {
-
-            display: inline-flex;
-
+            justify-content: space-between;
             align-items: center;
 
-            justify-content: center;
+            padding: 20px 5vw;
 
-            margin-bottom:
-                var(--space-4);
+            border-bottom: 1px solid var(--line);
 
-            padding:
-                7px 14px;
+            font-family: "IBM Plex Mono", monospace;
 
-            font-family:
-                "DM Sans",
-                sans-serif;
+            font-size: 11px;
 
-            font-size:
-                clamp(11px, 1.5vw, 13px);
+            text-transform: uppercase;
 
-            font-weight:
-                700;
+            letter-spacing: .08em;
+        }
 
-            line-height:
-                1;
+        .nav-logo {
+            color: var(--cyan);
 
-            color:
-                var(--color-primary-dark);
+            font-weight: 600;
+        }
 
-            background:
-                rgba(132, 105, 222, 0.10);
-
-            border:
-                1px solid
-                rgba(132, 105, 222, 0.20);
-
-            border-radius:
-                var(--radius-round);
-
-            text-transform:
-                uppercase;
-
-            letter-spacing:
-                1.5px;
+        .nav-status {
+            color: var(--muted);
         }
 
 
+        /* =====================================
+           MAIN
+        ===================================== */
 
-        /* =========================================
-           MAIN TITLE
-           ========================================= */
+        main {
+            max-width: 1300px;
 
-        .tool-title {
+            margin: auto;
 
-            margin:
-                0 0
-                var(--space-4);
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                clamp(
-                    36px,
-                    7vw,
-                    64px
-                );
-
-            font-weight:
-                700;
-
-            line-height:
-                1.05;
-
-            letter-spacing:
-                -2px;
-
-            color:
-                var(--color-black);
-
-            overflow-wrap:
-                anywhere;
+            padding: 80px 50px 120px;
         }
 
 
+        /* =====================================
+           INTRO
+        ===================================== */
 
-        /* =========================================
-           DESCRIPTION
-           ========================================= */
-
-        .tool-description {
-
-            width: 100%;
-
-            max-width:
-                720px;
-
-            margin:
-                0 auto;
-
-            font-family:
-                "DM Sans",
-                sans-serif;
-
-            font-size:
-                clamp(
-                    15px,
-                    2vw,
-                    18px
-                );
-
-            font-weight:
-                400;
-
-            line-height:
-                1.65;
-
-            color:
-                var(--color-gray-500);
-        }
-
-
-
-        /* =========================================
-           FULL-WIDTH HERO IMAGE
-           ========================================= */
-
-        .hero-image {
-
-            position: relative;
-
-            width: 100vw;
-
-            /*
-                Break out of the centered
-                content container.
-            */
-
-            margin-left: 50%;
-
-            transform:
-                translateX(-50%);
-
-            /*
-                Responsive height.
-
-                Desktop:
-                max 420px
-
-                Mobile:
-                controlled below
-            */
-
-            height:
-                clamp(
-                    200px,
-                    35vw,
-                    420px
-                );
-
-            margin-top:
-                40px;
-
-            margin-bottom:
-                80px;
-
-            overflow:
-                hidden;
-
-            background:
-                var(--color-gray-100);
-        }
-
-
-
-        /* =========================================
-           HERO IMAGE ITSELF
-           ========================================= */
-
-        .hero-image img {
-
-            display: block;
-
-            width: 100%;
-
-            height: 100%;
-
-            object-fit:
-                cover;
-
-            object-position:
-                center center;
-        }
-
-
-
-        /* =========================================
-           GENERAL SECTIONS
-           ========================================= */
-
-        .tool-section {
-
-            width: 100%;
-
-            margin-bottom:
-                clamp(
-                    56px,
-                    8vw,
-                    96px
-                );
-        }
-
-
-
-        /* =========================================
-           SECTION HEADING
-           ========================================= */
-
-        .section-heading {
-
-            margin:
-                0 0
-                clamp(
-                    24px,
-                    4vw,
-                    40px
-                );
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                clamp(
-                    28px,
-                    5vw,
-                    40px
-                );
-
-            font-weight:
-                700;
-
-            line-height:
-                1.15;
-
-            letter-spacing:
-                -1px;
-
-            color:
-                var(--color-black);
-        }
-
-
-
-        /* =========================================
-           INSTRUCTIONS GRID
-           ========================================= */
-
-        .instructions {
-
+        .intro {
             display: grid;
 
-            grid-template-columns:
-                repeat(
-                    2,
-                    minmax(0, 1fr)
-                );
+            grid-template-columns: 1.5fr 1fr;
 
-            gap:
-                clamp(
-                    16px,
-                    3vw,
-                    24px
-                );
+            gap: 80px;
+
+            align-items: end;
+
+            margin-bottom: 90px;
+        }
+
+        .intro-label {
+            margin-bottom: 20px;
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 12px;
+
+            color: var(--cyan);
+
+            text-transform: uppercase;
+
+            letter-spacing: .12em;
+        }
+
+        h1 {
+            max-width: 850px;
+
+            margin: 0;
+
+            font-size: clamp(
+                55px,
+                9vw,
+                125px
+            );
+
+            line-height: .86;
+
+            letter-spacing: -.07em;
+
+            font-weight: 800;
+        }
+
+        .intro-text {
+            max-width: 380px;
+
+            margin: 0;
+
+            padding-bottom: 5px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.7;
         }
 
 
+        /* =====================================
+           HERO IMAGE
+        ===================================== */
 
-        /* =========================================
-           INSTRUCTION CARD
-           ========================================= */
-
-        .instruction-card {
-
-            display: flex;
-
-            align-items:
-                flex-start;
+        .hero {
+            position: relative;
 
             width: 100%;
 
-            min-width: 0;
+            height: min(
+                50vw,
+                560px
+            );
 
-            padding:
-                clamp(
-                    20px,
-                    3vw,
-                    32px
-                );
+            margin-bottom: 120px;
 
-            background:
-                var(--color-white);
+            overflow: hidden;
 
-            border:
-                1px solid
-                var(--color-gray-200);
+            background: var(--surface);
 
-            border-radius:
-                var(--radius-lg);
+            border: 1px solid var(--line);
+        }
 
-            box-shadow:
-                var(--shadow-sm);
+        .hero img {
+            width: 100%;
+            height: 100%;
 
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease,
-                border-color 0.25s ease;
+            object-fit: cover;
+
+            object-position: center;
+        }
+
+        .hero-label {
+            position: absolute;
+
+            left: 25px;
+            bottom: 25px;
+
+            padding: 9px 12px;
+
+            color: #0b1014;
+
+            background: var(--cyan);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
         }
 
 
+        /* =====================================
+           SECTION
+        ===================================== */
 
-        /* =========================================
-           CARD HOVER
-           ========================================= */
+        .section {
+            display: grid;
 
-        .instruction-card:hover {
+            grid-template-columns: 180px 1fr;
 
-            transform:
-                translateY(-4px);
+            gap: 60px;
 
-            border-color:
-                rgba(
-                    132,
-                    105,
-                    222,
-                    0.45
-                );
+            margin-bottom: 130px;
+        }
 
-            box-shadow:
-                var(--shadow-md);
+        .section-side {
+            position: relative;
+        }
+
+        .section-side::before {
+            content: "";
+
+            position: absolute;
+
+            top: 8px;
+            left: 0;
+
+            width: 30px;
+            height: 2px;
+
+            background: var(--cyan);
+        }
+
+        .section-side span {
+            display: block;
+
+            padding-top: 22px;
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 11px;
+
+            color: var(--muted);
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+        }
+
+        .section-content h2 {
+            margin: 0 0 45px;
+
+            font-size: clamp(
+                35px,
+                5vw,
+                60px
+            );
+
+            line-height: .95;
+
+            letter-spacing: -.05em;
         }
 
 
+        /* =====================================
+           STEPS
+        ===================================== */
 
-        /* =========================================
-           INSTRUCTION NUMBER
-           ========================================= */
+        .steps {
+            border-top: 1px solid var(--line);
+        }
 
-        .instruction-number {
+        .step {
+            display: grid;
 
-            display: flex;
+            grid-template-columns: 80px 1fr;
 
-            align-items:
-                center;
+            gap: 30px;
 
-            justify-content:
-                center;
+            padding: 30px 0;
 
-            flex-shrink: 0;
+            border-bottom: 1px solid var(--line);
 
-            width:
-                clamp(
-                    40px,
-                    5vw,
-                    48px
-                );
+            transition: padding .2s ease;
+        }
 
-            height:
-                clamp(
-                    40px,
-                    5vw,
-                    48px
-                );
+        .step:hover {
+            padding-left: 15px;
+        }
 
-            margin-right:
-                clamp(
-                    14px,
-                    2vw,
-                    20px
-                );
+        .step-number {
+            font-family: "IBM Plex Mono", monospace;
 
-            font-family:
-                "Space Grotesk",
-                sans-serif;
+            font-size: 13px;
 
-            font-size:
-                clamp(
-                    16px,
-                    2vw,
-                    20px
-                );
+            color: var(--cyan);
+        }
 
-            font-weight:
-                700;
+        .step h3 {
+            margin: 0 0 10px;
 
-            color:
-                var(--color-white);
+            font-size: 25px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--color-primary),
-                    var(--color-primary-dark)
-                );
+            line-height: 1.1;
 
-            border-radius:
-                var(--radius-round);
+            letter-spacing: -.03em;
+        }
 
-            box-shadow:
-                0 6px 15px
-                rgba(
-                    132,
-                    105,
-                    222,
-                    0.25
-                );
+        .step p {
+            max-width: 650px;
+
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 15px;
+
+            line-height: 1.65;
         }
 
 
+        /* =====================================
+           FEATURED STEP
+        ===================================== */
 
-        /* =========================================
-           INSTRUCTION CONTENT
-           ========================================= */
+        .step:nth-child(3) {
+            position: relative;
 
-        .instruction-content {
+            padding-top: 45px;
+            padding-bottom: 45px;
+        }
 
-            flex: 1;
+        .step:nth-child(3)::after {
+            content: "KEY STEP";
 
-            min-width: 0;
+            position: absolute;
+
+            top: 20px;
+            right: 0;
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 9px;
+
+            color: var(--lime);
+
+            letter-spacing: .1em;
         }
 
 
+        /* =====================================
+           VIDEO SECTION
+        ===================================== */
 
-        /* =========================================
-           INSTRUCTION TITLE
-           ========================================= */
+        .video-section {
+            display: grid;
 
-        .instruction-title {
+            grid-template-columns: 180px 1fr;
 
-            margin:
-                0 0
-                var(--space-2);
+            gap: 60px;
 
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                clamp(
-                    19px,
-                    2.5vw,
-                    24px
-                );
-
-            font-weight:
-                700;
-
-            line-height:
-                1.25;
-
-            letter-spacing:
-                -0.4px;
-
-            color:
-                var(--color-black);
+            margin-bottom: 130px;
         }
-
-
-
-        /* =========================================
-           INSTRUCTION TEXT
-           ========================================= */
-
-        .instruction-text {
-
-            margin:
-                0;
-
-            font-family:
-                "DM Sans",
-                sans-serif;
-
-            font-size:
-                clamp(
-                    14px,
-                    1.7vw,
-                    16px
-                );
-
-            font-weight:
-                400;
-
-            line-height:
-                1.65;
-
-            color:
-                var(--color-gray-700);
-        }
-
-
-
-        /* =========================================
-           VIDEO WRAPPER
-           ========================================= */
 
         .video-wrapper {
+            max-width: 900px;
+        }
+
+        .video {
+            position: relative;
 
             width: 100%;
 
-            max-width:
-                1000px;
+            aspect-ratio: 16 / 9;
 
-            margin:
-                0 auto;
+            overflow: hidden;
+
+            background: #000;
+
+            border: 1px solid var(--line);
         }
 
+        .video iframe {
+            position: absolute;
 
-
-        /* =========================================
-           VIDEO CONTAINER
-           ========================================= */
-
-        .video-container {
-
-            position:
-                relative;
+            inset: 0;
 
             width: 100%;
+            height: 100%;
 
-            aspect-ratio:
-                16 / 9;
+            border: 0;
+        }
 
-            overflow:
-                hidden;
+        .video-caption {
+            margin: 15px 0 0;
 
-            background:
-                var(--color-gray-100);
+            color: var(--muted);
 
-            border:
-                1px solid
-                var(--color-gray-200);
+            font-family: "IBM Plex Mono", monospace;
 
-            border-radius:
-                var(--radius-lg);
+            font-size: 10px;
 
-            box-shadow:
-                var(--shadow-md);
+            text-transform: uppercase;
+
+            letter-spacing: .06em;
         }
 
 
-
-        /* =========================================
-           VIDEO IFRAME
-           ========================================= */
-
-        .video-container iframe {
-
-            position:
-                absolute;
-
-            inset:
-                0;
-
-            width:
-                100%;
-
-            height:
-                100%;
-
-            border:
-                0;
-        }
-
-
-
-        /* =========================================
-           VIDEO DESCRIPTION
-           ========================================= */
-
-        .video-description {
-
-            margin:
-                var(--space-4)
-                auto
-                0;
-
-            max-width:
-                700px;
-
-            text-align:
-                center;
-
-            font-family:
-                "DM Sans",
-                sans-serif;
-
-            font-size:
-                clamp(
-                    13px,
-                    1.7vw,
-                    16px
-                );
-
-            line-height:
-                1.6;
-
-            color:
-                var(--color-gray-500);
-        }
-
-
-
-        /* =========================================
+        /* =====================================
            IMPORTANT NOTE
-           ========================================= */
+        ===================================== */
 
-        .important-note {
+        .note-section {
+            display: grid;
 
-            display:
-                flex;
+            grid-template-columns: 180px 1fr;
 
-            align-items:
-                flex-start;
-
-            width: 100%;
-
-            max-width:
-                1000px;
-
-            margin:
-                0 auto;
-
-            padding:
-                clamp(
-                    20px,
-                    4vw,
-                    32px
-                );
-
-            background:
-                var(--color-gray-100);
-
-            border:
-                1px solid
-                var(--color-gray-200);
-
-            border-left:
-                5px solid
-                var(--color-primary);
-
-            border-radius:
-                var(--radius-md);
-
-            box-shadow:
-                var(--shadow-sm);
+            gap: 60px;
         }
 
+        .note {
+            display: grid;
 
+            grid-template-columns: 100px 1fr;
 
-        /* =========================================
-           NOTE ICON
-           ========================================= */
+            max-width: 900px;
 
-        .note-icon {
+            border: 1px solid var(--lime);
 
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            flex-shrink:
-                0;
-
-            width:
-                40px;
-
-            height:
-                40px;
-
-            margin-right:
-                var(--space-4);
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                20px;
-
-            font-weight:
-                700;
-
-            color:
-                var(--color-white);
-
-            background:
-                var(--color-primary);
-
-            border-radius:
-                var(--radius-round);
+            background: var(--surface);
         }
 
+        .note-symbol {
+            display: flex;
 
+            align-items: center;
+            justify-content: center;
 
-        /* =========================================
-           NOTE CONTENT
-           ========================================= */
+            color: var(--bg);
+
+            background: var(--lime);
+
+            font-size: 35px;
+
+            font-weight: 800;
+        }
 
         .note-content {
-
-            flex:
-                1;
-
-            min-width:
-                0;
+            padding: 30px;
         }
-
-
 
         .note-content strong {
+            display: block;
 
-            display:
-                block;
+            margin-bottom: 10px;
 
-            margin-bottom:
-                var(--space-1);
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                clamp(
-                    16px,
-                    2vw,
-                    19px
-                );
-
-            font-weight:
-                700;
+            font-size: 21px;
         }
-
-
 
         .note-content p {
+            margin: 0;
 
-            margin:
-                0;
+            color: var(--muted);
 
-            font-family:
-                "DM Sans",
-                sans-serif;
+            font-size: 14px;
 
-            font-size:
-                clamp(
-                    14px,
-                    1.7vw,
-                    16px
-                );
-
-            line-height:
-                1.65;
-
-            color:
-                var(--color-gray-700);
+            line-height: 1.65;
         }
 
 
-
-        /* =========================================
-           BUTTON
-           ========================================= */
-
-        .tool-button {
-
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            min-height:
-                46px;
-
-            padding:
-                0.75rem
-                1.5rem;
-
-            font-family:
-                "DM Sans",
-                sans-serif;
-
-            font-size:
-                15px;
-
-            font-weight:
-                700;
-
-            color:
-                var(--color-white);
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--color-primary),
-                    var(--color-primary-dark)
-                );
-
-            border:
-                1px solid
-                var(--color-primary);
-
-            border-radius:
-                var(--radius-md);
-
-            text-decoration:
-                none;
-
-            cursor:
-                pointer;
-
-            box-shadow:
-                0 6px 18px
-                rgba(
-                    132,
-                    105,
-                    222,
-                    0.22
-                );
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
-        }
-
-
-
-        .tool-button:hover {
-
-            transform:
-                translateY(-2px);
-
-            box-shadow:
-                0 10px 25px
-                rgba(
-                    132,
-                    105,
-                    222,
-                    0.30
-                );
-        }
-
-
-
-        .tool-button:active {
-
-            transform:
-                translateY(0);
-        }
-
-
-
-        .tool-button:focus-visible {
-
-            outline:
-                3px solid
-                rgba(
-                    132,
-                    105,
-                    222,
-                    0.35
-                );
-
-            outline-offset:
-                3px;
-        }
-
-
-
-        /* =========================================
+        /* =====================================
            FOOTER
-           ========================================= */
+        ===================================== */
 
-        .tool-footer {
+        footer {
+            display: flex;
 
-            width: 100%;
+            justify-content: space-between;
 
-            padding:
-                clamp(
-                    28px,
-                    5vw,
-                    40px
-                )
-                var(--side-padding);
+            padding: 25px 5vw;
 
-            text-align:
-                center;
+            border-top: 1px solid var(--line);
 
-            background:
-                var(--color-gray-100);
+            color: var(--muted);
 
-            border-top:
-                1px solid
-                var(--color-gray-200);
+            font-family: "IBM Plex Mono", monospace;
 
-            font-family:
-                "DM Sans",
-                sans-serif;
+            font-size: 10px;
 
-            font-size:
-                13px;
+            text-transform: uppercase;
 
-            line-height:
-                1.5;
-
-            color:
-                var(--color-gray-500);
+            letter-spacing: .07em;
         }
 
 
-
-        .tool-footer p {
-
-            margin:
-                0;
-        }
-
-
-
-        /* =========================================
+        /* =====================================
            TABLET
-           ========================================= */
+        ===================================== */
 
-        @media (max-width: 900px) {
+        @media (max-width: 850px) {
 
-            .instructions {
-
-                grid-template-columns:
-                    1fr;
+            main {
+                padding: 60px 30px 90px;
             }
 
+            .intro {
+                grid-template-columns: 1fr;
 
-            .tool-container {
-
-                padding-top:
-                    64px;
-
-                padding-bottom:
-                    64px;
+                gap: 30px;
             }
+
+            .intro-text {
+                max-width: 600px;
+            }
+
+            .section,
+            .video-section,
+            .note-section {
+                grid-template-columns: 120px 1fr;
+
+                gap: 35px;
+            }
+
+            .hero {
+                height: 350px;
+
+                margin-bottom: 90px;
+            }
+
         }
 
 
-
-        /* =========================================
+        /* =====================================
            MOBILE
-           ========================================= */
+        ===================================== */
 
         @media (max-width: 600px) {
 
-            body {
+            .nav {
+                padding: 15px 16px;
 
-                font-size:
-                    15px;
+                font-size: 9px;
             }
 
 
-            .tool-container {
-
-                padding:
-                    44px
-                    16px
-                    48px;
+            main {
+                padding: 50px 16px 75px;
             }
 
 
-            .tool-header {
+            /* Intro */
 
-                margin-bottom:
-                    32px;
+            .intro {
+                gap: 25px;
+
+                margin-bottom: 50px;
+            }
+
+            .intro-label {
+                margin-bottom: 15px;
+
+                font-size: 10px;
+            }
+
+            h1 {
+                font-size: 55px;
+
+                line-height: .88;
+            }
+
+            .intro-text {
+                font-size: 14px;
+
+                line-height: 1.6;
             }
 
 
-            .tool-label {
+            /* Hero */
 
-                margin-bottom:
-                    14px;
+            .hero {
+                height: 230px;
 
-                padding:
-                    7px 12px;
+                margin-bottom: 75px;
+            }
 
-                font-size:
-                    10px;
+            .hero-label {
+                left: 15px;
+                bottom: 15px;
 
-                letter-spacing:
-                    1.2px;
+                font-size: 8px;
             }
 
 
-            .tool-title {
+            /* Sections */
 
-                font-size:
-                    clamp(
-                        34px,
-                        11vw,
-                        46px
-                    );
+            .section,
+            .video-section,
+            .note-section {
 
-                letter-spacing:
-                    -1.5px;
+                display: block;
+
+                margin-bottom: 80px;
+            }
+
+            .section-side {
+                margin-bottom: 25px;
+            }
+
+            .section-side::before {
+                top: 0;
+            }
+
+            .section-side span {
+                padding-top: 14px;
+            }
+
+            .section-content h2 {
+                margin-bottom: 30px;
+
+                font-size: 38px;
             }
 
 
-            .tool-description {
+            /* Steps */
 
-                font-size:
-                    15px;
+            .step {
+                grid-template-columns: 45px 1fr;
 
-                line-height:
-                    1.6;
+                gap: 12px;
+
+                padding: 25px 0;
+            }
+
+            .step:hover {
+                padding-left: 0;
+            }
+
+            .step h3 {
+                font-size: 21px;
+            }
+
+            .step p {
+                font-size: 14px;
+            }
+
+            .step:nth-child(3) {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .step:nth-child(3)::after {
+                top: 15px;
+                right: 0;
+
+                font-size: 8px;
             }
 
 
-            /* ==============================
-               MOBILE HERO
-               ============================== */
+            /* Video */
 
-            .hero-image {
+            .video-section {
+                margin-top: 80px;
+            }
 
-                width:
-                    100vw;
+            .video {
+                border-color: var(--line);
+            }
 
-                height:
-                    220px;
-
-                margin-top:
-                    32px;
-
-                margin-bottom:
-                    56px;
-
-                margin-left:
-                    50%;
-
-                transform:
-                    translateX(-50%);
-
-                border-radius:
-                    0;
+            .video-caption {
+                font-size: 9px;
             }
 
 
-            .hero-image img {
+            /* Note */
 
-                width:
-                    100%;
-
-                height:
-                    100%;
-
-                object-fit:
-                    cover;
-
-                object-position:
-                    center center;
+            .note {
+                grid-template-columns: 55px 1fr;
             }
 
-
-            .tool-section {
-
-                margin-bottom:
-                    60px;
+            .note-symbol {
+                font-size: 23px;
             }
 
-
-            .section-heading {
-
-                margin-bottom:
-                    24px;
-
-                font-size:
-                    28px;
+            .note-content {
+                padding: 20px;
             }
-
-
-            .instructions {
-
-                gap:
-                    14px;
-            }
-
-
-            .instruction-card {
-
-                padding:
-                    20px;
-
-                border-radius:
-                    14px;
-            }
-
-
-            .instruction-number {
-
-                width:
-                    40px;
-
-                height:
-                    40px;
-
-                margin-right:
-                    14px;
-
-                font-size:
-                    16px;
-            }
-
-
-            .instruction-title {
-
-                font-size:
-                    19px;
-            }
-
-
-            .instruction-text {
-
-                font-size:
-                    14px;
-
-                line-height:
-                    1.6;
-            }
-
-
-            .video-container {
-
-                border-radius:
-                    12px;
-            }
-
-
-            .video-description {
-
-                font-size:
-                    13px;
-            }
-
-
-            .important-note {
-
-                padding:
-                    20px;
-
-                border-left-width:
-                    4px;
-            }
-
-
-            .note-icon {
-
-                width:
-                    36px;
-
-                height:
-                    36px;
-
-                margin-right:
-                    12px;
-
-                font-size:
-                    18px;
-            }
-
 
             .note-content strong {
-
-                font-size:
-                    16px;
+                font-size: 17px;
             }
-
 
             .note-content p {
-
-                font-size:
-                    14px;
+                font-size: 13px;
             }
 
 
-            .tool-footer {
+            /* Footer */
 
-                padding:
-                    28px 16px;
+            footer {
+                flex-direction: column;
+
+                gap: 8px;
+
+                padding: 20px 16px;
+
+                font-size: 8px;
             }
+
         }
 
 
-
-        /* =========================================
+        /* =====================================
            VERY SMALL PHONES
-           ========================================= */
+        ===================================== */
 
-        @media (max-width: 420px) {
+        @media (max-width: 380px) {
 
-            .tool-container {
-
-                padding-left:
-                    14px;
-
-                padding-right:
-                    14px;
+            h1 {
+                font-size: 47px;
             }
 
-
-            .tool-title {
-
-                font-size:
-                    34px;
+            .hero {
+                height: 195px;
             }
 
-
-            /* ==============================
-               SMALL PHONE HERO
-               ============================== */
-
-            .hero-image {
-
-                height:
-                    190px;
-
-                margin-top:
-                    28px;
-
-                margin-bottom:
-                    48px;
+            .section-content h2 {
+                font-size: 34px;
             }
 
-
-            .instruction-card {
-
-                flex-direction:
-                    column;
-
-                padding:
-                    18px;
-            }
-
-
-            .instruction-number {
-
-                margin-right:
-                    0;
-
-                margin-bottom:
-                    14px;
-            }
-
-
-            .important-note {
-
-                flex-direction:
-                    column;
-
-                padding:
-                    18px;
-            }
-
-
-            .note-icon {
-
-                margin-right:
-                    0;
-
-                margin-bottom:
-                    12px;
-            }
-        }
-
-
-
-        /* =========================================
-           REDUCED MOTION
-           ========================================= */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            html {
-
-                scroll-behavior:
-                    auto;
-            }
-
-
-            *,
-            *::before,
-            *::after {
-
-                transition:
-                    none !important;
-            }
         }
 
     </style>
@@ -1585,187 +771,209 @@
 
 <body>
 
-    <div class="tool-page">
+
+    <!-- =====================================
+         NAVIGATION
+    ====================================== -->
+
+    <nav class="nav">
+
+        <span class="nav-logo">
+            TOOL / GUIDE
+        </span>
+
+        <span class="nav-status">
+            Educational Resource
+        </span>
+
+    </nav>
+
+
+
+    <main>
 
 
         <!-- =====================================
-             MAIN CONTENT
-             ===================================== -->
+             INTRO
+        ====================================== -->
 
-        <main class="tool-container">
+        <header class="intro">
 
+            <div>
 
-            <!-- =====================================
-                 HEADER
-                 ===================================== -->
-
-            <header class="tool-header">
-
-                <div class="tool-label">
-                    Device Guide
+                <div class="intro-label">
+                    01 — Instructions
                 </div>
 
-
-                <h1 class="tool-title">
-                    Tool Name
+                <h1>
+                    Tool<br>
+                    Name
                 </h1>
-
-
-                <p class="tool-description">
-                    A simple guide on how to use this tool.
-                    Follow the steps below to get started
-                    and make the most out of the device.
-                </p>
-
-            </header>
-
-
-
-            <!-- =====================================
-                 FULL-WIDTH HERO IMAGE
-                 ===================================== -->
-
-            <div class="hero-image">
-
-                <!--
-                    IMPORTANT:
-
-                    Put your image inside your GitHub
-                    repository's "images" folder.
-
-                    Example:
-
-                    your-repository/
-                    ├── index.html
-                    └── images/
-                        └── hero.jpg
-
-                    Then keep this path:
-
-                    ./images/hero.jpg
-                -->
-
-                <img
-                    src="./images/hero.png"
-                    alt="Tool illustration"
-                >
 
             </div>
 
 
+            <p class="intro-text">
 
-            <!-- =====================================
-                 INSTRUCTIONS
-                 ===================================== -->
+                A straightforward guide to using this
+                device. Learn the basic process,
+                understand the controls, and review
+                the final result.
 
-            <section class="tool-section">
+            </p>
 
-                <h2 class="section-heading">
+        </header>
+
+
+
+        <!-- =====================================
+             HERO IMAGE
+        ====================================== -->
+
+        <div class="hero">
+
+            <!--
+                Put your image here:
+
+                images/hero.jpg
+
+                Folder structure:
+
+                index.html
+                images/
+                    hero.jpg
+            -->
+
+            <img
+                src="images/hero.jpg"
+                alt="Tool illustration"
+            >
+
+            <div class="hero-label">
+                Device Overview
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             HOW TO USE
+        ====================================== -->
+
+        <section class="section">
+
+
+            <div class="section-side">
+
+                <span>
+                    02 — Process
+                </span>
+
+            </div>
+
+
+            <div class="section-content">
+
+                <h2>
                     How to Use
                 </h2>
 
 
-                <div class="instructions">
+                <div class="steps">
 
 
-                    <!-- ===============================
-                         STEP 1
-                         =============================== -->
+                    <!-- STEP 01 -->
 
-                    <div class="instruction-card">
+                    <article class="step">
 
-                        <div class="instruction-number">
-                            1
+                        <div class="step-number">
+                            01
                         </div>
 
-                        <div class="instruction-content">
+                        <div>
 
-                            <h3 class="instruction-title">
+                            <h3>
                                 Open the Tool
                             </h3>
 
-                            <p class="instruction-text">
+                            <p>
                                 Open the tool using your preferred
                                 browser and access the main page.
                             </p>
 
                         </div>
 
-                    </div>
+                    </article>
 
 
 
-                    <!-- ===============================
-                         STEP 2
-                         =============================== -->
+                    <!-- STEP 02 -->
 
-                    <div class="instruction-card">
+                    <article class="step">
 
-                        <div class="instruction-number">
-                            2
+                        <div class="step-number">
+                            02
                         </div>
 
-                        <div class="instruction-content">
+                        <div>
 
-                            <h3 class="instruction-title">
+                            <h3>
                                 Choose an Option
                             </h3>
 
-                            <p class="instruction-text">
+                            <p>
                                 Select the option or feature that
                                 you want to use.
                             </p>
 
                         </div>
 
-                    </div>
+                    </article>
 
 
 
-                    <!-- ===============================
-                         STEP 3
-                         =============================== -->
+                    <!-- STEP 03 -->
 
-                    <div class="instruction-card">
+                    <article class="step">
 
-                        <div class="instruction-number">
-                            3
+                        <div class="step-number">
+                            03
                         </div>
 
-                        <div class="instruction-content">
+                        <div>
 
-                            <h3 class="instruction-title">
-                                Enter Your Information
+                            <h3>
+                                Enter Information
                             </h3>
 
-                            <p class="instruction-text">
+                            <p>
                                 Provide the necessary information
-                                required by the tool.
+                                required by the tool before
+                                continuing.
                             </p>
 
                         </div>
 
-                    </div>
+                    </article>
 
 
 
-                    <!-- ===============================
-                         STEP 4
-                         =============================== -->
+                    <!-- STEP 04 -->
 
-                    <div class="instruction-card">
+                    <article class="step">
 
-                        <div class="instruction-number">
-                            4
+                        <div class="step-number">
+                            04
                         </div>
 
-                        <div class="instruction-content">
+                        <div>
 
-                            <h3 class="instruction-title">
+                            <h3>
                                 Use the Tool
                             </h3>
 
-                            <p class="instruction-text">
+                            <p>
                                 Click the appropriate button and
                                 follow the instructions displayed
                                 on the screen.
@@ -1773,155 +981,149 @@
 
                         </div>
 
-                    </div>
+                    </article>
 
 
 
-                    <!-- ===============================
-                         STEP 5
-                         =============================== -->
+                    <!-- STEP 05 -->
 
-                    <div class="instruction-card">
+                    <article class="step">
 
-                        <div class="instruction-number">
-                            5
+                        <div class="step-number">
+                            05
                         </div>
 
-                        <div class="instruction-content">
+                        <div>
 
-                            <h3 class="instruction-title">
+                            <h3>
                                 Review the Result
                             </h3>
 
-                            <p class="instruction-text">
+                            <p>
                                 Check the output provided by the
                                 tool and make any necessary changes.
                             </p>
 
                         </div>
 
-                    </div>
+                    </article>
 
 
                 </div>
 
-            </section>
+            </div>
 
-
-
-            <!-- =====================================
-                 VIDEO
-                 ===================================== -->
-
-            <section class="tool-section">
-
-                <h2 class="section-heading">
-                    Video Tutorial
-                </h2>
-
-
-                <div class="video-wrapper">
-
-                    <div class="video-container">
-
-                        <!--
-                            Replace VIDEO_ID with your
-                            actual YouTube video ID.
-
-                            Example:
-
-                            https://www.youtube.com/watch?v=ABC123
-
-                            becomes:
-
-                            https://www.youtube.com/embed/ABC123
-                        -->
-
-                        <iframe
-                            src="https://www.youtube.com/embed/VIDEO_ID"
-                            title="Tool Tutorial"
-                            loading="lazy"
-                            allow="
-                                accelerometer;
-                                autoplay;
-                                clipboard-write;
-                                encrypted-media;
-                                gyroscope;
-                                picture-in-picture;
-                                web-share
-                            "
-                            allowfullscreen>
-                        </iframe>
-
-                    </div>
-
-
-                    <p class="video-description">
-                        Watch the video tutorial for a visual
-                        demonstration of how to use the device.
-                    </p>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =====================================
-                 IMPORTANT NOTE
-                 ===================================== -->
-
-            <section class="tool-section">
-
-                <h2 class="section-heading">
-                    Important Note
-                </h2>
-
-
-                <div class="important-note">
-
-                    <div class="note-icon">
-                        !
-                    </div>
-
-
-                    <div class="note-content">
-
-                        <strong>
-                            Remember:
-                        </strong>
-
-                        <p>
-                            Replace this text with any important
-                            information, reminders, or tips about
-                            using the tool.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-        </main>
+        </section>
 
 
 
         <!-- =====================================
-             FOOTER
-             ===================================== -->
+             VIDEO
+        ====================================== -->
 
-        <footer class="tool-footer">
-
-            <p>
-                Tool Guide • Educational Resource
-            </p>
-
-        </footer>
+        <section class="video-section">
 
 
-    </div>
+            <div class="section-side">
+
+                <span>
+                    03 — Watch
+                </span>
+
+            </div>
+
+
+            <div class="video-wrapper">
+
+                <div class="video">
+
+                    <!--
+                        Replace VIDEO_ID with
+                        your YouTube video ID.
+                    -->
+
+                    <iframe
+                        src="https://www.youtube.com/embed/VIDEO_ID"
+                        title="Tool Tutorial"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+
+                <p class="video-caption">
+                    Visual demonstration / tool tutorial
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             IMPORTANT NOTE
+        ====================================== -->
+
+        <section class="note-section">
+
+
+            <div class="section-side">
+
+                <span>
+                    04 — Note
+                </span>
+
+            </div>
+
+
+            <div class="note">
+
+                <div class="note-symbol">
+                    !
+                </div>
+
+
+                <div class="note-content">
+
+                    <strong>
+                        Remember this.
+                    </strong>
+
+                    <p>
+                        Replace this text with important
+                        information, reminders, safety
+                        instructions, or useful tips about
+                        using the tool.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer>
+
+        <span>
+            Tool Guide
+        </span>
+
+        <span>
+            Educational Resource · 2026
+        </span>
+
+    </footer>
+
 
 </body>
 
