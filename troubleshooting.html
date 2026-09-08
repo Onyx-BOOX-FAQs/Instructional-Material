@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Tool Guide — Troubleshooting</title>
+
+
+    <!-- FONT -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =====================================
+           VARIABLES
+        ===================================== */
+
+        :root {
+
+            --bg: #0b1014;
+
+            --surface: #11181d;
+
+            --text: #f2f4f5;
+
+            --muted: #8d989e;
+
+            --line: #2a343a;
+
+            --cyan: #63e6e2;
+
+            --orange: #ff8c42;
+
+            --lime: #d6f36a;
+
+        }
+
+
+        /* =====================================
+           RESET
+        ===================================== */
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+        body {
+
+            margin: 0;
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family: "Archivo", sans-serif;
+
+            overflow-x: hidden;
+
+        }
+
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+
+        /* =====================================
+           NAVIGATION
+        ===================================== */
+
+        .nav {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 20px 5vw;
+
+            border-bottom: 1px solid var(--line);
+
+        }
+
+
+        .nav-logo {
+
+            color: var(--cyan);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 30px;
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .07em;
+
+        }
+
+
+        .nav-links a {
+
+            position: relative;
+
+            padding: 5px 0;
+
+            color: var(--muted);
+
+            transition: color .2s ease;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: var(--text);
+
+        }
+
+
+        .nav-links a.active {
+
+            color: var(--orange);
+
+        }
+
+
+        .nav-links a.active::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: -6px;
+
+            height: 2px;
+
+            background: var(--orange);
+
+        }
+
+
+        /* =====================================
+           MAIN
+        ===================================== */
+
+        main {
+
+            max-width: 1300px;
+
+            margin: auto;
+
+            padding: 90px 50px 120px;
+
+        }
+
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .header {
+
+            display: grid;
+
+            grid-template-columns: 180px 1fr;
+
+            gap: 60px;
+
+            margin-bottom: 100px;
+
+        }
+
+
+        .header-label {
+
+            color: var(--orange);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .1em;
+
+        }
+
+
+        .header-label::before {
+
+            content: "";
+
+            display: block;
+
+            width: 30px;
+
+            height: 2px;
+
+            margin-bottom: 15px;
+
+            background: var(--orange);
+
+        }
+
+
+        .header-content h1 {
+
+            max-width: 850px;
+
+            margin: 0;
+
+            font-size: clamp(55px, 9vw, 115px);
+
+            line-height: .85;
+
+            letter-spacing: -.07em;
+
+            font-weight: 800;
+
+        }
+
+
+        .header-content p {
+
+            max-width: 600px;
+
+            margin: 30px 0 0;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =====================================
+           TROUBLESHOOTING LIST
+        ===================================== */
+
+        .problems {
+
+            border-top: 1px solid var(--line);
+
+        }
+
+
+        .problem {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1.5fr 100px;
+
+            gap: 40px;
+
+            align-items: start;
+
+            padding: 35px 0;
+
+            border-bottom: 1px solid var(--line);
+
+            transition:
+                background .2s ease,
+                padding .2s ease;
+
+        }
+
+
+        .problem:hover {
+
+            padding-left: 20px;
+
+            padding-right: 20px;
+
+            background: var(--surface);
+
+        }
+
+
+        .problem-title {
+
+            display: flex;
+
+            gap: 15px;
+
+            align-items: flex-start;
+
+        }
+
+
+        .problem-dot {
+
+            flex-shrink: 0;
+
+            width: 10px;
+
+            height: 10px;
+
+            margin-top: 7px;
+
+            background: var(--orange);
+
+        }
+
+
+        .problem h2 {
+
+            margin: 0;
+
+            font-size: 22px;
+
+            line-height: 1.15;
+
+            letter-spacing: -.03em;
+
+        }
+
+
+        .problem-description {
+
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .problem-tag {
+
+            justify-self: end;
+
+            padding: 6px 8px;
+
+            border: 1px solid var(--line);
+
+            color: var(--muted);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 8px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+
+        }
+
+
+        /* =====================================
+           REPAIR BOX
+        ===================================== */
+
+        .repair {
+
+            margin-top: 100px;
+
+            padding: 40px;
+
+            border: 1px solid var(--line);
+
+            background: var(--surface);
+
+        }
+
+
+        .repair-label {
+
+            margin-bottom: 25px;
+
+            color: var(--lime);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .1em;
+
+        }
+
+
+        .repair h2 {
+
+            max-width: 700px;
+
+            margin: 0 0 20px;
+
+            font-size: clamp(32px, 5vw, 55px);
+
+            line-height: .95;
+
+            letter-spacing: -.05em;
+
+        }
+
+
+        .repair p {
+
+            max-width: 700px;
+
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 25px 5vw;
+
+            border-top: 1px solid var(--line);
+
+            color: var(--muted);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .07em;
+
+        }
+
+
+        /* =====================================
+           TABLET
+        ===================================== */
+
+        @media (max-width: 850px) {
+
+            main {
+
+                padding: 60px 30px 90px;
+
+            }
+
+
+            .header {
+
+                grid-template-columns: 120px 1fr;
+
+                gap: 35px;
+
+            }
+
+
+            .problem {
+
+                grid-template-columns: 1fr 1.5fr;
+
+            }
+
+
+            .problem-tag {
+
+                display: none;
+
+            }
+
+        }
+
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (max-width: 600px) {
+
+            .nav {
+
+                align-items: flex-start;
+
+                gap: 20px;
+
+                padding: 15px 16px;
+
+            }
+
+
+            .nav-links {
+
+                gap: 15px;
+
+                font-size: 8px;
+
+            }
+
+
+            main {
+
+                padding: 50px 16px 75px;
+
+            }
+
+
+            .header {
+
+                display: block;
+
+                margin-bottom: 60px;
+
+            }
+
+
+            .header-label {
+
+                margin-bottom: 25px;
+
+                font-size: 10px;
+
+            }
+
+
+            .header-content h1 {
+
+                font-size: 55px;
+
+            }
+
+
+            .header-content p {
+
+                margin-top: 25px;
+
+                font-size: 14px;
+
+            }
+
+
+            .problem {
+
+                display: block;
+
+                padding: 28px 0;
+
+            }
+
+
+            .problem:hover {
+
+                padding-left: 0;
+
+                padding-right: 0;
+
+            }
+
+
+            .problem-title {
+
+                margin-bottom: 15px;
+
+            }
+
+
+            .problem h2 {
+
+                font-size: 20px;
+
+            }
+
+
+            .problem-description {
+
+                padding-left: 25px;
+
+                font-size: 13px;
+
+            }
+
+
+            .problem-tag {
+
+                display: inline-block;
+
+                margin-top: 15px;
+
+                margin-left: 25px;
+
+            }
+
+
+            .repair {
+
+                margin-top: 70px;
+
+                padding: 25px;
+
+            }
+
+
+            .repair h2 {
+
+                font-size: 38px;
+
+            }
+
+
+            .repair p {
+
+                font-size: 13px;
+
+            }
+
+
+            footer {
+
+                flex-direction: column;
+
+                gap: 8px;
+
+                padding: 20px 16px;
+
+            }
+
+        }
+
+
+        /* =====================================
+           VERY SMALL PHONES
+        ===================================== */
+
+        @media (max-width: 380px) {
+
+            .header-content h1 {
+
+                font-size: 47px;
+
+            }
+
+
+            .repair h2 {
+
+                font-size: 34px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         NAVIGATION
+    ===================================== -->
+
+    <nav class="nav">
+
+
+        <a
+            href="index.html"
+            class="nav-logo"
+        >
+            TOOL / GUIDE
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Instructions
+            </a>
+
+
+            <a
+                href="troubleshooting.html"
+                class="active"
+            >
+                Troubleshooting
+            </a>
+
+        </div>
+
+
+    </nav>
+
+
+
+    <main>
+
+
+        <!-- =====================================
+             HEADER
+        ===================================== -->
+
+        <header class="header">
+
+
+            <div class="header-label">
+
+                01 — Troubleshoot
+
+            </div>
+
+
+            <div class="header-content">
+
+                <h1>
+
+                    Something<br>
+                    went wrong?
+
+                </h1>
+
+
+                <p>
+
+                    Use this page to identify common problems
+                    with the tool and find the appropriate
+                    solution or maintenance procedure.
+
+                </p>
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =====================================
+             PROBLEMS
+        ===================================== -->
+
+        <section class="problems">
+
+
+            <!-- PROBLEM 01 -->
+
+            <article class="problem">
+
+
+                <div class="problem-title">
+
+                    <span class="problem-dot"></span>
+
+                    <h2>
+                        Tool won't turn on
+                    </h2>
+
+                </div>
+
+
+                <p class="problem-description">
+
+                    Check that the device is properly connected
+                    to its power source. Make sure the power
+                    switch is turned on and inspect the cable
+                    or connection for visible damage.
+
+                </p>
+
+
+                <span class="problem-tag">
+                    Power
+                </span>
+
+
+            </article>
+
+
+
+            <!-- PROBLEM 02 -->
+
+            <article class="problem">
+
+
+                <div class="problem-title">
+
+                    <span class="problem-dot"></span>
+
+                    <h2>
+                        Tool produces unusual results
+                    </h2>
+
+                </div>
+
+
+                <p class="problem-description">
+
+                    Check the settings and make sure the tool
+                    is being used according to the recommended
+                    procedure. Repeat the process if necessary.
+
+                </p>
+
+
+                <span class="problem-tag">
+                    Operation
+                </span>
+
+
+            </article>
+
+
+
+            <!-- PROBLEM 03 -->
+
+            <article class="problem">
+
+
+                <div class="problem-title">
+
+                    <span class="problem-dot"></span>
+
+                    <h2>
+                        Tool behaves unusually
+                    </h2>
+
+                </div>
+
+
+                <p class="problem-description">
+
+                    Stop using the tool and check for loose,
+                    damaged, or incorrectly positioned parts.
+                    Do not continue operating the device if
+                    the problem persists.
+
+                </p>
+
+
+                <span class="problem-tag">
+                    Warning
+                </span>
+
+
+            </article>
+
+
+
+            <!-- PROBLEM 04 -->
+
+            <article class="problem">
+
+
+                <div class="problem-title">
+
+                    <span class="problem-dot"></span>
+
+                    <h2>
+                        Component appears damaged
+                    </h2>
+
+                </div>
+
+
+                <p class="problem-description">
+
+                    Do not use the damaged component. Follow
+                    the recommended maintenance procedure or
+                    contact the appropriate person for repair
+                    or replacement.
+
+                </p>
+
+
+                <span class="problem-tag">
+                    Damage
+                </span>
+
+
+            </article>
+
+
+
+            <!-- PROBLEM 05 -->
+
+            <article class="problem">
+
+
+                <div class="problem-title">
+
+                    <span class="problem-dot"></span>
+
+                    <h2>
+                        Problem still persists
+                    </h2>
+
+                </div>
+
+
+                <p class="problem-description">
+
+                    Stop using the device and refer to the
+                    official maintenance instructions or
+                    contact the person responsible for
+                    servicing the equipment.
+
+                </p>
+
+
+                <span class="problem-tag">
+                    Service
+                </span>
+
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             REPAIR / MAINTENANCE
+        ===================================== -->
+
+        <section class="repair">
+
+
+            <div class="repair-label">
+
+                Maintenance
+
+            </div>
+
+
+            <h2>
+
+                Don't make the problem worse.
+
+            </h2>
+
+
+            <p>
+
+                If the problem cannot be resolved using the
+                troubleshooting steps above, stop operating
+                the device. Refer to the manufacturer's
+                maintenance instructions or contact the
+                appropriate person responsible for servicing
+                the equipment.
+
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================
+         FOOTER
+    ===================================== -->
+
+    <footer>
+
+        <span>
+            Tool Guide
+        </span>
+
+        <span>
+            Troubleshooting · 2026
+        </span>
+
+    </footer>
+
+
+</body>
+
+</html>
