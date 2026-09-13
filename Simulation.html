@@ -1,0 +1,1383 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earth–Moon–Sun Tide Simulator</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #07111f;
+    color: #eef5ff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .app {
+    width: min(1100px, 96vw);
+    padding: 18px;
+  }
+
+  h1 {
+    margin: 0 0 6px;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+  }
+
+  .subtitle {
+    margin: 0 0 16px;
+    color: #a9bad1;
+    line-height: 1.45;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 290px;
+    gap: 16px;
+  }
+
+  .card {
+    background: #0d1b2d;
+    border: 1px solid #233a56;
+    border-radius: 16px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, .28);
+  }
+
+  .sim-card {
+    padding: 10px;
+    overflow: hidden;
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    background: #030a13;
+  }
+
+  .controls {
+    padding: 18px;
+  }
+
+  .control-row {
+    margin-bottom: 18px;
+  }
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  input[type="range"] {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    border: 1px solid #365576;
+    border-radius: 10px;
+    background: #142b45;
+    color: white;
+    padding: 11px 12px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 9px;
+  }
+
+  button:hover {
+    background: #1b395b;
+  }
+
+  .readout {
+    border-top: 1px solid #263d57;
+    margin-top: 14px;
+    padding-top: 14px;
+    line-height: 1.65;
+    color: #c9d8e9;
+    font-size: .94rem;
+  }
+
+  .legend {
+    margin-top: 12px;
+    color: #93a8c0;
+    font-size: .82rem;
+    line-height: 1.5;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #173553;
+    color: #d8ebff;
+    font-size: .78rem;
+    margin-bottom: 9px;
+  }
+
+  @media (max-width: 760px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 14px;
+    }
+
+    .control-row,
+    .buttons,
+    .readout,
+    .legend {
+      grid-column: 1 / -1;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    button {
+      margin: 0;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <h1>Earth–Moon–Sun Tide Simulator</h1>
+
+  <p class="subtitle">
+    Watch the Moon orbit Earth while the idealized tidal bulges rotate with
+    the Earth–Moon line. The Sun adds a second tidal influence.
+  </p>
+
+  <div class="layout">
+
+    <!-- SIMULATION -->
+    <section class="card sim-card">
+      <canvas id="sim" width="760" height="600"></canvas>
+    </section>
+
+
+    <!-- CONTROLS -->
+    <aside class="card controls">
+
+      <div class="control-row">
+
+        <span class="badge">
+          Interactive model
+        </span>
+
+        <label for="speed">
+          <span>Orbit speed</span>
+          <span id="speedVal">1.0×</span>
+        </label>
+
+        <input
+          id="speed"
+          type="range"
+          min="0.1"
+          max="5"
+          step="0.1"
+          value="1"
+        >
+
+      </div>
+
+
+      <div class="control-row">
+
+        <label for="sunStrength">
+          <span>Sun tidal influence</span>
+          <span id="sunVal">35%</span>
+        </label>
+
+        <input
+          id="sunStrength"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          value="35"
+        >
+
+      </div>
+
+
+      <div class="buttons">
+
+        <button id="play">
+          ⏸ Pause
+        </button>
+
+        <button id="reset">
+          ↻ Reset
+        </button>
+
+      </div>
+
+
+      <div class="readout">
+
+        <div>
+          <strong>Moon angle:</strong>
+          <span id="angleReadout">0°</span>
+        </div>
+
+        <div>
+          <strong>Tide condition:</strong>
+          <span id="condition">
+            Spring-tide alignment
+          </span>
+        </div>
+
+        <div>
+          <strong>Relative tidal range:</strong>
+          <span id="rangeReadout">100%</span>
+        </div>
+
+      </div>
+
+
+      <div class="legend">
+
+        <strong>How to read it:</strong><br>
+
+        The two elongated blue regions represent the
+        idealized equilibrium-tide bulges. Their long axis
+        follows the combined tidal forcing.
+
+        This is an educational visualization, not a
+        scale-accurate ocean model.
+
+      </div>
+
+    </aside>
+
+  </div>
+
+</div>
+
+
+<script>
+
+const canvas = document.getElementById("sim");
+
+const ctx = canvas.getContext("2d");
+
+
+/* ---------------------------------------
+   UI ELEMENTS
+--------------------------------------- */
+
+const speed =
+  document.getElementById("speed");
+
+const sunStrength =
+  document.getElementById("sunStrength");
+
+const speedVal =
+  document.getElementById("speedVal");
+
+const sunVal =
+  document.getElementById("sunVal");
+
+const playBtn =
+  document.getElementById("play");
+
+const resetBtn =
+  document.getElementById("reset");
+
+const angleReadout =
+  document.getElementById("angleReadout");
+
+const condition =
+  document.getElementById("condition");
+
+const rangeReadout =
+  document.getElementById("rangeReadout");
+
+
+/* ---------------------------------------
+   SIMULATION VARIABLES
+--------------------------------------- */
+
+let angle = 0;
+
+let running = true;
+
+let last = performance.now();
+
+
+/* ---------------------------------------
+   HIGH DPI / RESPONSIVE CANVAS
+--------------------------------------- */
+
+function resizeCanvasForDPR() {
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+  const dpr =
+    Math.min(
+      window.devicePixelRatio || 1,
+      2
+    );
+
+  canvas.width =
+    Math.max(
+      1,
+      Math.round(rect.width * dpr)
+    );
+
+  canvas.height =
+    Math.max(
+      1,
+      Math.round(
+        rect.width * 600 / 760 * dpr
+      )
+    );
+}
+
+
+window.addEventListener(
+  "resize",
+  resizeCanvasForDPR
+);
+
+resizeCanvasForDPR();
+
+
+/* ---------------------------------------
+   BACKGROUND
+--------------------------------------- */
+
+function drawBackground(w, h) {
+
+  ctx.fillStyle = "#030a13";
+
+  ctx.fillRect(
+    0,
+    0,
+    w,
+    h
+  );
+
+
+  const stars = [
+
+    [0.07, 0.12],
+    [0.18, 0.25],
+    [0.29, 0.09],
+    [0.41, 0.17],
+    [0.53, 0.08],
+    [0.66, 0.20],
+    [0.79, 0.10],
+    [0.91, 0.24],
+    [0.11, 0.72],
+    [0.25, 0.85],
+    [0.47, 0.76],
+    [0.70, 0.84],
+    [0.88, 0.70]
+
+  ];
+
+
+  ctx.fillStyle = "#9bb4d1";
+
+
+  for (const [x, y] of stars) {
+
+    ctx.beginPath();
+
+    ctx.arc(
+      w * x,
+      h * y,
+      1.2,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+  }
+}
+
+
+/* ---------------------------------------
+   SUN
+--------------------------------------- */
+
+function drawSun(x, y, r) {
+
+  const glow =
+    ctx.createRadialGradient(
+      x,
+      y,
+      r * .2,
+      x,
+      y,
+      r * 1.7
+    );
+
+
+  glow.addColorStop(
+    0,
+    "rgba(255,239,170,.95)"
+  );
+
+  glow.addColorStop(
+    .45,
+    "rgba(255,190,55,.65)"
+  );
+
+  glow.addColorStop(
+    1,
+    "rgba(255,150,30,0)"
+  );
+
+
+  ctx.fillStyle = glow;
+
+
+  ctx.beginPath();
+
+  ctx.arc(
+    x,
+    y,
+    r * 1.7,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fill();
+
+
+  ctx.fillStyle = "#ffd45a";
+
+
+  ctx.beginPath();
+
+  ctx.arc(
+    x,
+    y,
+    r,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fill();
+
+
+  ctx.fillStyle = "#fff3b0";
+
+
+  ctx.beginPath();
+
+  ctx.arc(
+    x - r * .25,
+    y - r * .25,
+    r * .28,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fill();
+}
+
+
+/* ---------------------------------------
+   MOON ORBIT
+--------------------------------------- */
+
+function drawOrbit(
+  cx,
+  cy,
+  rx,
+  ry
+) {
+
+  ctx.strokeStyle =
+    "rgba(120,160,200,.25)";
+
+  ctx.lineWidth = 1.5;
+
+  ctx.setLineDash([
+    5,
+    7
+  ]);
+
+
+  ctx.beginPath();
+
+  ctx.ellipse(
+    cx,
+    cy,
+    rx,
+    ry,
+    0,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.stroke();
+
+  ctx.setLineDash([]);
+}
+
+
+/* ---------------------------------------
+   EARTH + TIDAL BULGES
+--------------------------------------- */
+
+function drawEarth(
+  cx,
+  cy,
+  r,
+  bulgeAngle
+) {
+
+  /*
+     Draw the tidal bulges first
+     so Earth appears in front of them.
+  */
+
+  ctx.save();
+
+  ctx.translate(
+    cx,
+    cy
+  );
+
+  ctx.rotate(
+    bulgeAngle
+  );
+
+
+  /* Soft tidal glow */
+
+  const bulgeGlow =
+    ctx.createRadialGradient(
+      0,
+      0,
+      r * .7,
+      0,
+      0,
+      r * 1.8
+    );
+
+
+  bulgeGlow.addColorStop(
+    0,
+    "rgba(70,160,255,.16)"
+  );
+
+  bulgeGlow.addColorStop(
+    1,
+    "rgba(70,160,255,0)"
+  );
+
+
+  ctx.fillStyle =
+    bulgeGlow;
+
+
+  ctx.beginPath();
+
+  ctx.ellipse(
+    0,
+    0,
+    r * 1.72,
+    r * .74,
+    0,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fill();
+
+
+  /* Actual bulges */
+
+  ctx.fillStyle =
+    "rgba(55,170,255,.28)";
+
+
+  ctx.beginPath();
+
+  ctx.ellipse(
+    0,
+    0,
+    r * 1.52,
+    r * .62,
+    0,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fill();
+
+
+  ctx.restore();
+
+
+  /* -----------------------------------
+     EARTH SPHERE
+  ----------------------------------- */
+
+  const earthGradient =
+    ctx.createRadialGradient(
+      cx - r * .35,
+      cy - r * .4,
+      r * .1,
+      cx,
+      cy,
+      r * 1.1
+    );
+
+
+  earthGradient.addColorStop(
+    0,
+    "#6db8ff"
+  );
+
+  earthGradient.addColorStop(
+    .55,
+    "#2877b9"
+  );
+
+  earthGradient.addColorStop(
+    1,
+    "#0b3157"
+  );
+
+
+  ctx.fillStyle =
+    earthGradient;
+
+
+  ctx.beginPath();
+
+  ctx.arc(
+    cx,
+    cy,
+    r,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fill();
+
+
+  /* -----------------------------------
+     SIMPLIFIED CONTINENTS
+  ----------------------------------- */
+
+  ctx.fillStyle =
+    "rgba(91,177,104,.75)";
+
+
+  const continents = [
+
+    [
+      [-.42,-.22],
+      [-.20,-.38],
+      [-.05,-.24],
+      [-.10,-.05],
+      [-.31,.02],
+      [-.48,-.06]
+    ],
+
+    [
+      [.05,-.12],
+      [.24,-.28],
+      [.45,-.18],
+      [.39,.00],
+      [.19,.06],
+      [.09,-.01]
+    ],
+
+    [
+      [-.03,.16],
+      [.17,.18],
+      [.28,.39],
+      [.10,.55],
+      [-.02,.36]
+    ],
+
+    [
+      [-.55,.24],
+      [-.34,.20],
+      [-.29,.38],
+      [-.46,.50],
+      [-.59,.39]
+    ]
+
+  ];
+
+
+  for (
+    const polygon of continents
+  ) {
+
+    ctx.beginPath();
+
+
+    polygon.forEach(
+      (point, index) => {
+
+        const x =
+          cx + point[0] * r;
+
+        const y =
+          cy + point[1] * r;
+
+
+        if (index === 0) {
+
+          ctx.moveTo(
+            x,
+            y
+          );
+
+        } else {
+
+          ctx.lineTo(
+            x,
+            y
+          );
+        }
+
+      }
+    );
+
+
+    ctx.closePath();
+
+    ctx.fill();
+  }
+
+
+  /* -----------------------------------
+     EQUATOR
+  ----------------------------------- */
+
+  ctx.strokeStyle =
+    "rgba(255,255,255,.20)";
+
+  ctx.lineWidth = 1;
+
+
+  ctx.beginPath();
+
+  ctx.ellipse(
+    cx,
+    cy,
+    r,
+    r * .32,
+    0,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.stroke();
+
+
+  /* -----------------------------------
+     EARTH LABEL
+  ----------------------------------- */
+
+  ctx.fillStyle =
+    "#eef5ff";
+
+  ctx.font =
+    `${Math.max(12, r * .23)}px Arial`;
+
+  ctx.textAlign =
+    "center";
+
+
+  ctx.fillText(
+    "EARTH",
+    cx,
+    cy + r * 1.55
+  );
+}
+
+
+/* ---------------------------------------
+   MOON
+--------------------------------------- */
+
+function drawMoon(
+  x,
+  y,
+  r
+) {
+
+  const moonGradient =
+    ctx.createRadialGradient(
+      x - r * .35,
+      y - r * .4,
+      r * .1,
+      x,
+      y,
+      r * 1.15
+    );
+
+
+  moonGradient.addColorStop(
+    0,
+    "#f2f2f2"
+  );
+
+  moonGradient.addColorStop(
+    .65,
+    "#a8adb5"
+  );
+
+  moonGradient.addColorStop(
+    1,
+    "#555d68"
+  );
+
+
+  ctx.fillStyle =
+    moonGradient;
+
+
+  ctx.beginPath();
+
+  ctx.arc(
+    x,
+    y,
+    r,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fill();
+
+
+  /* Moon craters */
+
+  ctx.fillStyle =
+    "rgba(65,70,78,.35)";
+
+
+  const craters = [
+
+    [-.25,-.15,.12],
+    [.28,-.28,.09],
+    [-.18,.27,.08],
+    [.28,.25,.13],
+    [-.42,.16,.06]
+
+  ];
+
+
+  for (
+    const [dx, dy, rr] of craters
+  ) {
+
+    ctx.beginPath();
+
+    ctx.arc(
+      x + dx * r,
+      y + dy * r,
+      rr * r,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+  }
+
+
+  /* Moon label */
+
+  ctx.fillStyle =
+    "#eef5ff";
+
+  ctx.font =
+    `${Math.max(11, r * .35)}px Arial`;
+
+  ctx.textAlign =
+    "center";
+
+
+  ctx.fillText(
+    "MOON",
+    x,
+    y + r * 1.65
+  );
+}
+
+
+/* ---------------------------------------
+   TIDAL AXIS
+--------------------------------------- */
+
+function drawTidalAxis(
+  cx,
+  cy,
+  r,
+  angle
+) {
+
+  ctx.save();
+
+  ctx.translate(
+    cx,
+    cy
+  );
+
+  ctx.rotate(
+    angle
+  );
+
+
+  ctx.strokeStyle =
+    "rgba(100,205,255,.45)";
+
+  ctx.lineWidth = 2;
+
+  ctx.setLineDash([
+    8,
+    7
+  ]);
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    -r * 1.85,
+    0
+  );
+
+  ctx.lineTo(
+    r * 1.85,
+    0
+  );
+
+  ctx.stroke();
+
+
+  ctx.setLineDash([]);
+
+  ctx.restore();
+}
+
+
+/* ---------------------------------------
+   MAIN RENDER LOOP
+--------------------------------------- */
+
+function render(now) {
+
+  const dt =
+    Math.min(
+      0.05,
+      (now - last) / 1000
+    );
+
+  last = now;
+
+
+  /* Update Moon orbit */
+
+  if (running) {
+
+    angle +=
+      dt *
+      0.65 *
+      Number(speed.value);
+  }
+
+
+  const w =
+    canvas.width;
+
+  const h =
+    canvas.height;
+
+
+  const scale =
+    w / 760;
+
+
+  /* -----------------------------------
+     POSITIONS
+  ----------------------------------- */
+
+  const cx =
+    w * .47;
+
+  const cy =
+    h * .53;
+
+
+  const earthR =
+    Math.min(w, h) * .135;
+
+
+  const orbitR =
+    Math.min(w, h) * .315;
+
+
+  /* Background */
+
+  drawBackground(
+    w,
+    h
+  );
+
+
+  /* -----------------------------------
+     SUN
+  ----------------------------------- */
+
+  const sunX =
+    w * .10;
+
+  const sunY =
+    h * .20;
+
+
+  drawSun(
+    sunX,
+    sunY,
+    Math.min(w, h) * .055
+  );
+
+
+  ctx.fillStyle =
+    "#f5d98c";
+
+  ctx.font =
+    `${Math.max(12, 15 * scale)}px Arial`;
+
+  ctx.textAlign =
+    "center";
+
+
+  ctx.fillText(
+    "SUN",
+    sunX,
+    sunY + Math.min(w, h) * .09
+  );
+
+
+  /* Moon orbit */
+
+  drawOrbit(
+    cx,
+    cy,
+    orbitR,
+    orbitR * .82
+  );
+
+
+  /* -----------------------------------
+     MOON POSITION
+  ----------------------------------- */
+
+  const moonX =
+    cx +
+    Math.cos(angle) *
+    orbitR;
+
+
+  const moonY =
+    cy +
+    Math.sin(angle) *
+    orbitR *
+    .82;
+
+
+  /* -----------------------------------
+     ANGLES
+  ----------------------------------- */
+
+  const sunAngle =
+    Math.atan2(
+      sunY - cy,
+      sunX - cx
+    );
+
+
+  const moonAngle =
+    Math.atan2(
+      moonY - cy,
+      moonX - cx
+    );
+
+
+  /* -----------------------------------
+     COMBINED TIDAL FORCE
+  -----------------------------------
+
+     Moon = 100% reference strength.
+
+     Sun = user-controlled fraction
+     of the lunar tidal influence.
+
+     Vector addition gives a simple
+     representation of how the solar
+     and lunar tides combine.
+  */
+
+  const solarStrength =
+    Number(sunStrength.value) / 100;
+
+
+  const vx =
+    Math.cos(moonAngle) +
+    solarStrength *
+    Math.cos(sunAngle);
+
+
+  const vy =
+    Math.sin(moonAngle) +
+    solarStrength *
+    Math.sin(sunAngle);
+
+
+  const combinedAngle =
+    Math.atan2(
+      vy,
+      vx
+    );
+
+
+  /* -----------------------------------
+     RELATIVE TIDAL RANGE
+  ----------------------------------- */
+
+  const magnitude =
+    Math.hypot(
+      vx,
+      vy
+    );
+
+
+  const minimum =
+    1 - solarStrength;
+
+
+  const maximum =
+    1 + solarStrength;
+
+
+  const normalized =
+    Math.max(
+      0,
+      Math.min(
+        1,
+        (
+          magnitude - minimum
+        ) /
+        (
+          maximum - minimum || 1
+        )
+      )
+    );
+
+
+  const relativeRange =
+    Math.round(
+      55 + 45 * normalized
+    );
+
+
+  /* -----------------------------------
+     DRAW TIDAL AXIS
+  ----------------------------------- */
+
+  drawTidalAxis(
+    cx,
+    cy,
+    earthR,
+    combinedAngle
+  );
+
+
+  /* -----------------------------------
+     DRAW EARTH
+  ----------------------------------- */
+
+  drawEarth(
+    cx,
+    cy,
+    earthR,
+    combinedAngle
+  );
+
+
+  /* -----------------------------------
+     DRAW MOON
+  ----------------------------------- */
+
+  drawMoon(
+    moonX,
+    moonY,
+    Math.min(w, h) * .052
+  );
+
+
+  /* -----------------------------------
+     MOON → EARTH LINE
+  ----------------------------------- */
+
+  ctx.strokeStyle =
+    "rgba(220,235,255,.30)";
+
+  ctx.lineWidth = 1.5;
+
+  ctx.setLineDash([
+    4,
+    6
+  ]);
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    moonX,
+    moonY
+  );
+
+  ctx.lineTo(
+    cx,
+    cy
+  );
+
+  ctx.stroke();
+
+  ctx.setLineDash([]);
+
+
+  /* -----------------------------------
+     UI READOUTS
+  ----------------------------------- */
+
+  const degrees =
+    (
+      (angle * 180 / Math.PI) % 360
+      + 360
+    ) % 360;
+
+
+  angleReadout.textContent =
+    `${degrees | 0}°`;
+
+
+  const alignment =
+    Math.abs(
+      Math.cos(
+        moonAngle - sunAngle
+      )
+    );
+
+
+  if (alignment > .72) {
+
+    condition.textContent =
+      "Spring-tide alignment";
+
+  } else if (alignment < .28) {
+
+    condition.textContent =
+      "Neap-tide arrangement";
+
+  } else {
+
+    condition.textContent =
+      "Intermediate tidal range";
+  }
+
+
+  rangeReadout.textContent =
+    `${relativeRange}%`;
+
+
+  speedVal.textContent =
+    `${Number(speed.value).toFixed(1)}×`;
+
+
+  sunVal.textContent =
+    `${sunStrength.value}%`;
+
+
+  requestAnimationFrame(
+    render
+  );
+}
+
+
+/* ---------------------------------------
+   PLAY / PAUSE
+--------------------------------------- */
+
+playBtn.addEventListener(
+  "click",
+  () => {
+
+    running = !running;
+
+    playBtn.textContent =
+      running
+        ? "⏸ Pause"
+        : "▶ Play";
+  }
+);
+
+
+/* ---------------------------------------
+   RESET
+--------------------------------------- */
+
+resetBtn.addEventListener(
+  "click",
+  () => {
+
+    angle = 0;
+
+    running = true;
+
+    playBtn.textContent =
+      "⏸ Pause";
+  }
+);
+
+
+/* ---------------------------------------
+   START SIMULATION
+--------------------------------------- */
+
+requestAnimationFrame(
+  render
+);
+
+</script>
+
+</body>
+</html>
+```
