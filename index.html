@@ -185,7 +185,7 @@
            INTRO
         ===================================== */
 
-        .intro 
+        .intro {
 
             display: grid;
 
@@ -234,7 +234,7 @@
 
         .intro-text {
 
-            max-width: 390px;
+            max-width: 520px;
 
             margin: 0;
 
@@ -244,6 +244,33 @@
 
             line-height: 1.7;
 
+        }
+
+        .quiz-action {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: -70px;
+            margin-bottom: 90px;
+        }
+
+        .quiz-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 20px;
+            border: 1px solid var(--cyan);
+            color: var(--cyan);
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            transition: background .2s ease, color .2s ease, transform .2s ease;
+        }
+
+        .quiz-button:hover {
+            background: var(--cyan);
+            color: var(--bg);
+            transform: translateY(-2px);
         }
 
 
@@ -458,9 +485,9 @@
 
 
         .video-wrapper {
-
-            max-width: 900px;
-
+            width: 100%;
+            max-width: none;
+            min-width: 0;
         }
 
 
@@ -692,11 +719,14 @@
 
 
             .intro {
-
                 gap: 25px;
-
                 margin-bottom: 50px;
+            }
 
+            .quiz-action {
+                justify-content: flex-start;
+                margin-top: -20px;
+                margin-bottom: 60px;
             }
 
 
@@ -1091,11 +1121,9 @@
 
         </section>
 
-        <nav class="nav">
-
-        <a href="quiz.html" class="quiz-button">Take the Quiz →</a>
-
-
+        <div class="quiz-action">
+            <a href="quiz.html" class="quiz-button">Take the Quiz →</a>
+        </div>
 
         <!-- =====================================
              VIDEO
@@ -1197,11 +1225,6 @@
         </span>
 
     </footer>
-
-
-</body>
-
-</html>
 
 
 </body>
