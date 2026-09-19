@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Tide-al Knowledge — Quiz</title>
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =====================================
+           VARIABLES
+        ===================================== */
+
+        :root {
+            --bg: #0b1014;
+            --surface: #11181d;
+            --surface-light: #172127;
+
+            --text: #f2f4f5;
+            --muted: #8d989e;
+            --line: #2a343a;
+
+            --cyan: #63e6e2;
+            --lime: #d6f36a;
+
+            --correct: #63e6e2;
+            --wrong: #ff7b7b;
+        }
+
+
+        /* =====================================
+           RESET
+        ===================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+
+            min-height: 100vh;
+
+            background: var(--bg);
+            color: var(--text);
+
+            font-family: "Archivo", sans-serif;
+
+            overflow-x: hidden;
+        }
+
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =====================================
+           NAVIGATION
+        ===================================== */
+
+        .nav {
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 20px 5vw;
+
+            border-bottom: 1px solid var(--line);
+
+        }
+
+
+        .nav-logo {
+
+            color: var(--cyan);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            text-transform: uppercase;
+            letter-spacing: .08em;
+
+        }
+
+
+        .back-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: var(--muted);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .07em;
+
+            transition:
+                color .2s ease,
+                transform .2s ease;
+
+        }
+
+
+        .back-link:hover {
+
+            color: var(--text);
+
+            transform: translateX(-3px);
+
+        }
+
+
+        /* =====================================
+           MAIN
+        ===================================== */
+
+        main {
+
+            width: 100%;
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            padding: 80px 50px 120px;
+
+        }
+
+
+        /* =====================================
+           QUIZ INTRO
+        ===================================== */
+
+        .quiz-intro {
+
+            margin-bottom: 60px;
+
+        }
+
+
+        .intro-label {
+
+            margin-bottom: 20px;
+
+            color: var(--cyan);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .12em;
+
+        }
+
+
+        .quiz-intro h1 {
+
+            margin: 0 0 25px;
+
+            font-size: clamp(55px, 9vw, 105px);
+
+            line-height: .86;
+
+            letter-spacing: -.07em;
+
+            font-weight: 800;
+
+        }
+
+
+        .quiz-intro p {
+
+            max-width: 620px;
+
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =====================================
+           QUIZ HEADER
+        ===================================== */
+
+        .quiz-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .question-count {
+
+            color: var(--cyan);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+
+        }
+
+
+        .score-preview {
+
+            color: var(--muted);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .07em;
+
+        }
+
+
+        /* =====================================
+           PROGRESS BAR
+        ===================================== */
+
+        .progress-track {
+
+            width: 100%;
+
+            height: 3px;
+
+            margin-bottom: 40px;
+
+            background: var(--line);
+
+        }
+
+
+        .progress-bar {
+
+            width: 0%;
+
+            height: 100%;
+
+            background: var(--cyan);
+
+            transition: width .3s ease;
+
+        }
+
+
+        /* =====================================
+           QUESTION CARD
+        ===================================== */
+
+        .question-card {
+
+            border: 1px solid var(--line);
+
+            background: var(--surface);
+
+        }
+
+
+        .question-number {
+
+            padding: 25px 30px;
+
+            border-bottom: 1px solid var(--line);
+
+            color: var(--muted);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+
+        }
+
+
+        .question-content {
+
+            padding: 45px 40px 40px;
+
+        }
+
+
+        .question-text {
+
+            margin: 0 0 45px;
+
+            max-width: 800px;
+
+            font-size: clamp(25px, 4vw, 42px);
+
+            line-height: 1.15;
+
+            letter-spacing: -.035em;
+
+            font-weight: 600;
+
+        }
+
+
+        /* =====================================
+           ANSWERS
+        ===================================== */
+
+        .answer-options {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+
+        }
+
+
+        .answer-button {
+
+            position: relative;
+
+            min-height: 100px;
+
+            padding: 25px;
+
+            border: 1px solid var(--line);
+
+            background: transparent;
+
+            color: var(--text);
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition:
+                background .2s ease,
+                border-color .2s ease,
+                transform .2s ease;
+
+        }
+
+
+        .answer-button:hover {
+
+            border-color: var(--cyan);
+
+            background: var(--surface-light);
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .answer-button.selected {
+
+            border-color: var(--cyan);
+
+            background: rgba(99, 230, 226, .08);
+
+        }
+
+
+        .answer-button.selected::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 4px;
+            height: 100%;
+
+            background: var(--cyan);
+
+        }
+
+
+        .answer-label {
+
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: var(--muted);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+
+        }
+
+
+        .answer-text {
+
+            display: block;
+
+            font-size: 22px;
+
+            font-weight: 700;
+
+            letter-spacing: -.02em;
+
+        }
+
+
+        /* =====================================
+           NAVIGATION BUTTONS
+        ===================================== */
+
+        .quiz-navigation {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .nav-button {
+
+            padding: 14px 20px;
+
+            border: 1px solid var(--line);
+
+            background: transparent;
+
+            color: var(--text);
+
+            cursor: pointer;
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: .07em;
+
+            transition:
+                background .2s ease,
+                border-color .2s ease,
+                color .2s ease;
+
+        }
+
+
+        .nav-button:hover {
+
+            border-color: var(--cyan);
+
+            color: var(--cyan);
+
+        }
+
+
+        .nav-button:disabled {
+
+            opacity: .35;
+
+            cursor: not-allowed;
+
+        }
+
+
+        .next-button {
+
+            border-color: var(--cyan);
+
+            background: var(--cyan);
+
+            color: var(--bg);
+
+        }
+
+
+        .next-button:hover {
+
+            background: var(--lime);
+
+            border-color: var(--lime);
+
+            color: var(--bg);
+
+        }
+
+
+        .submit-button {
+
+            border-color: var(--lime);
+
+            background: var(--lime);
+
+            color: var(--bg);
+
+        }
+
+
+        .submit-button:hover {
+
+            border-color: var(--cyan);
+
+            background: var(--cyan);
+
+        }
+
+
+        /* =====================================
+           UNANSWERED MESSAGE
+        ===================================== */
+
+        .warning {
+
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 12px 15px;
+
+            border-left: 3px solid var(--lime);
+
+            background: var(--surface-light);
+
+            color: var(--muted);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 9px;
+
+            line-height: 1.6;
+
+            text-transform: uppercase;
+
+            letter-spacing: .04em;
+
+        }
+
+
+        .warning.show {
+
+            display: block;
+
+        }
+
+
+        /* =====================================
+           RESULTS
+        ===================================== */
+
+        #results {
+
+            display: none;
+
+        }
+
+
+        .result-card {
+
+            border: 1px solid var(--line);
+
+            background: var(--surface);
+
+        }
+
+
+        .result-top {
+
+            padding: 50px 40px;
+
+            border-bottom: 1px solid var(--line);
+
+        }
+
+
+        .result-label {
+
+            margin-bottom: 15px;
+
+            color: var(--cyan);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .1em;
+
+        }
+
+
+        .result-score {
+
+            margin: 0;
+
+            font-size: clamp(70px, 12vw, 130px);
+
+            line-height: .8;
+
+            letter-spacing: -.08em;
+
+            font-weight: 800;
+
+        }
+
+
+        .result-message {
+
+            margin: 30px 0 0;
+
+            max-width: 600px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .review {
+
+            border-top: 0;
+
+        }
+
+
+        .review-title {
+
+            padding: 25px 30px;
+
+            border-bottom: 1px solid var(--line);
+
+            color: var(--muted);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+
+        }
+
+
+        .review-item {
+
+            padding: 30px;
+
+            border-bottom: 1px solid var(--line);
+
+        }
+
+
+        .review-item:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .review-question {
+
+            margin: 0 0 20px;
+
+            font-size: 19px;
+
+            line-height: 1.4;
+
+            font-weight: 600;
+
+        }
+
+
+        .review-answer {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+            color: var(--muted);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 10px;
+
+            line-height: 1.7;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .review-answer strong {
+
+            color: var(--text);
+
+        }
+
+
+        .review-item.correct {
+
+            border-left: 4px solid var(--correct);
+
+        }
+
+
+        .review-item.incorrect {
+
+            border-left: 4px solid var(--wrong);
+
+        }
+
+
+        .review-status {
+
+            display: inline-block;
+
+            margin-bottom: 15px;
+
+            padding: 6px 8px;
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 8px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+
+        }
+
+
+        .review-item.correct .review-status {
+
+            background: rgba(99, 230, 226, .1);
+
+            color: var(--correct);
+
+        }
+
+
+        .review-item.incorrect .review-status {
+
+            background: rgba(255, 123, 123, .1);
+
+            color: var(--wrong);
+
+        }
+
+
+        .result-actions {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 30px;
+
+        }
+
+
+        .result-action {
+
+            padding: 16px 22px;
+
+            border: 1px solid var(--cyan);
+
+            background: var(--cyan);
+
+            color: var(--bg);
+
+            cursor: pointer;
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: .07em;
+
+            transition:
+                background .2s ease,
+                border-color .2s ease;
+
+        }
+
+
+        .result-action:hover {
+
+            border-color: var(--lime);
+
+            background: var(--lime);
+
+        }
+
+
+        .result-back {
+
+            border-color: var(--line);
+
+            background: transparent;
+
+            color: var(--text);
+
+        }
+
+
+        .result-back:hover {
+
+            border-color: var(--cyan);
+
+            background: transparent;
+
+            color: var(--cyan);
+
+        }
+
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 25px 5vw;
+
+            border-top: 1px solid var(--line);
+
+            color: var(--muted);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .07em;
+
+        }
+
+
+        /* =====================================
+           TABLET
+        ===================================== */
+
+        @media (max-width: 850px) {
+
+            main {
+
+                padding: 60px 30px 90px;
+
+            }
+
+
+            .question-content {
+
+                padding: 35px 30px 30px;
+
+            }
+
+
+            .result-top {
+
+                padding: 40px 30px;
+
+            }
+
+        }
+
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (max-width: 600px) {
+
+            .nav {
+
+                padding: 15px 16px;
+
+            }
+
+
+            main {
+
+                padding: 50px 16px 75px;
+
+            }
+
+
+            .quiz-intro {
+
+                margin-bottom: 45px;
+
+            }
+
+
+            .quiz-intro h1 {
+
+                font-size: 55px;
+
+            }
+
+
+            .quiz-intro p {
+
+                font-size: 14px;
+
+            }
+
+
+            .quiz-header {
+
+                align-items: flex-start;
+
+            }
+
+
+            .question-card {
+
+                width: 100%;
+
+            }
+
+
+            .question-number {
+
+                padding: 20px;
+
+            }
+
+
+            .question-content {
+
+                padding: 30px 20px 25px;
+
+            }
+
+
+            .question-text {
+
+                margin-bottom: 30px;
+
+                font-size: 28px;
+
+            }
+
+
+            .answer-options {
+
+                grid-template-columns: 1fr;
+
+                gap: 10px;
+
+            }
+
+
+            .answer-button {
+
+                min-height: 85px;
+
+                padding: 20px;
+
+            }
+
+
+            .answer-text {
+
+                font-size: 20px;
+
+            }
+
+
+            .quiz-navigation {
+
+                flex-wrap: wrap;
+
+            }
+
+
+            .nav-button {
+
+                padding: 13px 16px;
+
+            }
+
+
+            .result-top {
+
+                padding: 35px 20px;
+
+            }
+
+
+            .result-score {
+
+                font-size: 85px;
+
+            }
+
+
+            .result-message {
+
+                font-size: 14px;
+
+            }
+
+
+            .review-title {
+
+                padding: 20px;
+
+            }
+
+
+            .review-item {
+
+                padding: 25px 20px;
+
+            }
+
+
+            .review-question {
+
+                font-size: 17px;
+
+            }
+
+
+            .result-actions {
+
+                flex-direction: column;
+
+            }
+
+
+            .result-action {
+
+                width: 100%;
+
+                text-align: center;
+
+            }
+
+
+            footer {
+
+                flex-direction: column;
+
+                gap: 8px;
+
+                padding: 20px 16px;
+
+            }
+
+        }
+
+
+        /* =====================================
+           SMALL PHONES
+        ===================================== */
+
+        @media (max-width: 380px) {
+
+            .quiz-intro h1 {
+
+                font-size: 47px;
+
+            }
+
+
+            .question-text {
+
+                font-size: 25px;
+
+            }
+
+
+            .answer-text {
+
+                font-size: 18px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         NAVIGATION
+    ===================================== -->
+
+    <nav class="nav">
+
+        <a href="index.html" class="nav-logo">
+            TIDE / QUIZ
+        </a>
+
+
+        <a href="index.html" class="back-link">
+            ← Back to Guide
+        </a>
+
+    </nav>
+
+
+
+    <!-- =====================================
+         MAIN
+    ===================================== -->
+
+    <main>
+
+
+        <!-- =====================================
+             QUIZ INTRO
+        ===================================== -->
+
+        <header class="quiz-intro">
+
+            <div class="intro-label">
+                Knowledge Check
+            </div>
+
+
+            <h1>
+                Tide-al<br>
+                Knowledge
+            </h1>
+
+
+            <p>
+                Test your understanding of tides. Five questions will
+                be randomly selected from the question bank for each
+                attempt.
+            </p>
+
+        </header>
+
+
+
+        <!-- =====================================
+             QUIZ AREA
+        ===================================== -->
+
+        <section id="quiz">
+
+
+            <div class="quiz-header">
+
+                <div
+                    class="question-count"
+                    id="questionCount"
+                >
+                    Question 1 of 5
+                </div>
+
+
+                <div
+                    class="score-preview"
+                    id="scorePreview"
+                >
+                    0 answered
+                </div>
+
+            </div>
+
+
+            <div class="progress-track">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
+
+            </div>
+
+
+
+            <div class="question-card">
+
+
+                <div
+                    class="question-number"
+                    id="questionNumber"
+                >
+                    Item 01
+                </div>
+
+
+                <div class="question-content">
+
+
+                    <h2
+                        class="question-text"
+                        id="questionText"
+                    >
+                    </h2>
+
+
+
+                    <div class="answer-options">
+
+
+                        <button
+                            type="button"
+                            class="answer-button"
+                            id="trueButton"
+                            onclick="selectAnswer(true)"
+                        >
+
+                            <span class="answer-label">
+                                Option A
+                            </span>
+
+                            <span class="answer-text">
+                                TRUE
+                            </span>
+
+                        </button>
+
+
+
+                        <button
+                            type="button"
+                            class="answer-button"
+                            id="falseButton"
+                            onclick="selectAnswer(false)"
+                        >
+
+                            <span class="answer-label">
+                                Option B
+                            </span>
+
+                            <span class="answer-text">
+                                FALSE
+                            </span>
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="warning"
+                id="warning"
+            >
+                Please select an answer before continuing.
+            </div>
+
+
+
+            <div class="quiz-navigation">
+
+
+                <button
+                    type="button"
+                    class="nav-button"
+                    id="previousButton"
+                    onclick="previousQuestion()"
+                >
+                    ← Previous
+                </button>
+
+
+                <button
+                    type="button"
+                    class="nav-button next-button"
+                    id="nextButton"
+                    onclick="nextQuestion()"
+                >
+                    Next →
+                </button>
+
+
+                <button
+                    type="button"
+                    class="nav-button submit-button"
+                    id="submitButton"
+                    onclick="submitQuiz()"
+                    style="display: none;"
+                >
+                    Submit Quiz
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             RESULTS
+        ===================================== -->
+
+        <section id="results">
+
+
+            <div class="result-card">
+
+
+                <div class="result-top">
+
+                    <div class="result-label">
+                        Quiz Complete
+                    </div>
+
+
+                    <h2
+                        class="result-score"
+                        id="resultScore"
+                    >
+                        0 / 5
+                    </h2>
+
+
+                    <p
+                        class="result-message"
+                        id="resultMessage"
+                    >
+                    </p>
+
+
+                    <div class="result-actions">
+
+
+                        <button
+                            type="button"
+                            class="result-action"
+                            onclick="startQuiz()"
+                        >
+                            Try Again
+                        </button>
+
+
+                        <a
+                            href="index.html"
+                            class="result-action result-back"
+                        >
+                            Back to Guide
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="review">
+
+
+                    <div class="review-title">
+                        Answer Review
+                    </div>
+
+
+                    <div id="reviewList">
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================
+         FOOTER
+    ===================================== -->
+
+    <footer>
+
+        <span>
+            Tide-al Knowledge
+        </span>
+
+        <span>
+            Educational Resource · 2026
+        </span>
+
+    </footer>
+
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ===================================== -->
+
+    <script>
+
+
+        /* =====================================
+           QUESTION BANK
+        ===================================== */
+
+        const questionBank = [
+
+            {
+                question:
+                    "High tides only happen on the side of the Earth that is directly facing the Moon.",
+
+                answer: false
+            },
+
+
+            {
+                question:
+                    "A coastal location experiences high tide every 12 hours because Earth rotates once every 24 hours.",
+
+                answer: false
+            },
+
+
+            {
+                question:
+                    "As Earth rotates on its axis, landmasses continuously pass through the ocean water bulges held in place by orbital forces.",
+
+                answer: true
+            },
+
+
+            {
+                question:
+                    "High tides are strongest when the Earth, Moon, and Sun are aligned in one direction.",
+
+                answer: true
+            },
+
+
+            {
+                question:
+                    "Neap tides produce the strongest tides with the smallest difference between high and low water levels.",
+
+                answer: false
+            },
+
+
+            {
+                question:
+                    "The Moon's gravitational pull is the primary factor responsible for Earth's tides.",
+
+                answer: true
+            },
+
+
+            {
+                question:
+                    "There are generally two tidal bulges on opposite sides of Earth.",
+
+                answer: true
+            },
+
+
+            {
+                question:
+                    "The Sun has no effect on Earth's tides because it is much farther away from Earth than the Moon.",
+
+                answer: false
+            },
+
+
+            {
+                question:
+                    "Spring tides occur when the gravitational effects of the Sun and Moon reinforce each other.",
+
+                answer: true
+            },
+
+
+            {
+                question:
+                    "Neap tides occur when the Sun and Moon are positioned approximately at right angles relative to Earth.",
+
+                answer: true
+            },
+
+
+            {
+                question:
+                    "During a spring tide, the difference between high tide and low tide is relatively large.",
+
+                answer: true
+            },
+
+
+            {
+                question:
+                    "During a neap tide, the difference between high tide and low tide is relatively small.",
+
+                answer: true
+            },
+
+
+            {
+                question:
+                    "Earth's rotation helps determine when a particular coastal location passes through tidal bulges.",
+
+                answer: true
+            },
+
+
+            {
+                question:
+                    "The timing and height of tides are exactly the same at every coastal location on Earth.",
+
+                answer: false
+            },
+
+
+            {
+                question:
+                    "Tides are caused only by the rotation of Earth and are not influenced by the gravitational pull of the Moon or Sun.",
+
+                answer: false
+            }
+
+        ];
+
+
+
+        /* =====================================
+           QUIZ VARIABLES
+        ===================================== */
+
+        let selectedQuestions = [];
+
+        let currentQuestion = 0;
+
+        let userAnswers = [];
+
+
+
+        /* =====================================
+           SHUFFLE FUNCTION
+        ===================================== */
+
+        function shuffle(array) {
+
+            const shuffled = [...array];
+
+            for (
+                let i = shuffled.length - 1;
+                i > 0;
+                i--
+            ) {
+
+                const j =
+                    Math.floor(Math.random() * (i + 1));
+
+                [
+                    shuffled[i],
+                    shuffled[j]
+                ] =
+                [
+                    shuffled[j],
+                    shuffled[i]
+                ];
+
+            }
+
+            return shuffled;
+
+        }
+
+
+
+        /* =====================================
+           START QUIZ
+        ===================================== */
+
+        function startQuiz() {
+
+            /*
+             * Shuffle the entire question bank
+             * and take only five questions.
+             */
+
+            selectedQuestions =
+                shuffle(questionBank).slice(0, 5);
+
+
+            currentQuestion = 0;
+
+
+            userAnswers =
+                new Array(5).fill(null);
+
+
+            document.getElementById("quiz").style.display =
+                "block";
+
+
+            document.getElementById("results").style.display =
+                "none";
+
+
+            renderQuestion();
+
+        }
+
+
+
+        /* =====================================
+           DISPLAY QUESTION
+        ===================================== */
+
+        function renderQuestion() {
+
+            const question =
+                selectedQuestions[currentQuestion];
+
+
+            document.getElementById("questionCount").textContent =
+                `Question ${currentQuestion + 1} of 5`;
+
+
+            document.getElementById("questionNumber").textContent =
+                `Item ${String(currentQuestion + 1).padStart(2, "0")}`;
+
+
+            document.getElementById("questionText").textContent =
+                question.question;
+
+
+            /*
+             * Update progress bar.
+             */
+
+            const progress =
+                ((currentQuestion + 1) / 5) * 100;
+
+
+            document.getElementById("progressBar").style.width =
+                `${progress}%`;
+
+
+            /*
+             * Update answered count.
+             */
+
+            const answered =
+                userAnswers.filter(
+                    answer => answer !== null
+                ).length;
+
+
+            document.getElementById("scorePreview").textContent =
+                `${answered} answered`;
+
+
+            /*
+             * Clear warning.
+             */
+
+            document.getElementById("warning").classList.remove(
+                "show"
+            );
+
+
+            /*
+             * Remove previous selection.
+             */
+
+            document.getElementById("trueButton").classList.remove(
+                "selected"
+            );
+
+            document.getElementById("falseButton").classList.remove(
+                "selected"
+            );
+
+
+            /*
+             * Restore saved answer if the user
+             * goes back to a previous question.
+             */
+
+            if (userAnswers[currentQuestion] === true) {
+
+                document.getElementById("trueButton")
+                    .classList.add("selected");
+
+            }
+
+
+            if (userAnswers[currentQuestion] === false) {
+
+                document.getElementById("falseButton")
+                    .classList.add("selected");
+
+            }
+
+
+            /*
+             * Previous button.
+             */
+
+            document.getElementById("previousButton").disabled =
+                currentQuestion === 0;
+
+
+            /*
+             * Show either Next or Submit.
+             */
+
+            if (currentQuestion === 4) {
+
+                document.getElementById("nextButton").style.display =
+                    "none";
+
+                document.getElementById("submitButton").style.display =
+                    "inline-block";
+
+            } else {
+
+                document.getElementById("nextButton").style.display =
+                    "inline-block";
+
+                document.getElementById("submitButton").style.display =
+                    "none";
+
+            }
+
+        }
+
+
+
+        /* =====================================
+           SELECT ANSWER
+        ===================================== */
+
+        function selectAnswer(answer) {
+
+            userAnswers[currentQuestion] =
+                answer;
+
+
+            document.getElementById("trueButton")
+                .classList.remove("selected");
+
+
+            document.getElementById("falseButton")
+                .classList.remove("selected");
+
+
+            if (answer === true) {
+
+                document.getElementById("trueButton")
+                    .classList.add("selected");
+
+            } else {
+
+                document.getElementById("falseButton")
+                    .classList.add("selected");
+
+            }
+
+
+            document.getElementById("warning")
+                .classList.remove("show");
+
+
+            /*
+             * Update answered count immediately.
+             */
+
+            const answered =
+                userAnswers.filter(
+                    answer => answer !== null
+                ).length;
+
+
+            document.getElementById("scorePreview").textContent =
+                `${answered} answered`;
+
+        }
+
+
+
+        /* =====================================
+           NEXT QUESTION
+        ===================================== */
+
+        function nextQuestion() {
+
+            /*
+             * Don't allow the user to continue
+             * without answering.
+             */
+
+            if (userAnswers[currentQuestion] === null) {
+
+                document.getElementById("warning")
+                    .classList.add("show");
+
+                return;
+
+            }
+
+
+            if (currentQuestion < 4) {
+
+                currentQuestion++;
+
+                renderQuestion();
+
+            }
+
+        }
+
+
+
+        /* =====================================
+           PREVIOUS QUESTION
+        ===================================== */
+
+        function previousQuestion() {
+
+            if (currentQuestion > 0) {
+
+                currentQuestion--;
+
+                renderQuestion();
+
+            }
+
+        }
+
+
+
+        /* =====================================
+           SUBMIT QUIZ
+        ===================================== */
+
+        function submitQuiz() {
+
+            /*
+             * Make sure the final question
+             * has an answer.
+             */
+
+            if (userAnswers[currentQuestion] === null) {
+
+                document.getElementById("warning")
+                    .classList.add("show");
+
+                return;
+
+            }
+
+
+            /*
+             * Calculate score.
+             */
+
+            let score = 0;
+
+
+            selectedQuestions.forEach(
+                (question, index) => {
+
+                    if (
+                        userAnswers[index] ===
+                        question.answer
+                    ) {
+
+                        score++;
+
+                    }
+
+                }
+            );
+
+
+            /*
+             * Hide quiz and show results.
+             */
+
+            document.getElementById("quiz").style.display =
+                "none";
+
+
+            document.getElementById("results").style.display =
+                "block";
+
+
+            /*
+             * Display score.
+             */
+
+            document.getElementById("resultScore").textContent =
+                `${score} / 5`;
+
+
+            /*
+             * Generate message.
+             */
+
+            let message;
+
+
+            if (score === 5) {
+
+                message =
+                    "Excellent work. You correctly answered all five questions.";
+
+            } else if (score >= 4) {
+
+                message =
+                    "Great work. You demonstrated a strong understanding of tides.";
+
+            } else if (score === 3) {
+
+                message =
+                    "Good effort. Review the concepts of tidal bulges, spring tides, and neap tides.";
+
+            } else if (score >= 1) {
+
+                message =
+                    "Keep practicing. Reviewing the relationship between the Moon, Sun, Earth, and tides may help.";
+
+            } else {
+
+                message =
+                    "Keep learning. Review the tide concepts and try another randomized attempt.";
+
+            }
+
+
+            document.getElementById("resultMessage").textContent =
+                message;
+
+
+            /*
+             * Generate answer review.
+             */
+
+            generateReview();
+
+            /*
+             * Scroll to the top of the results.
+             */
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+
+        /* =====================================
+           ANSWER REVIEW
+        ===================================== */
+
+        function generateReview() {
+
+            const reviewList =
+                document.getElementById("reviewList");
+
+
+            reviewList.innerHTML = "";
+
+
+            selectedQuestions.forEach(
+                (question, index) => {
+
+                    const userAnswer =
+                        userAnswers[index];
+
+
+                    const correct =
+                        userAnswer === question.answer;
+
+
+                    const item =
+                        document.createElement("div");
+
+
+                    item.className =
+                        `review-item ${
+                            correct
+                                ? "correct"
+                                : "incorrect"
+                        }`;
+
+
+                    const status =
+                        correct
+                            ? "Correct"
+                            : "Needs Review";
+
+
+                    const userAnswerText =
+                        userAnswer === true
+                            ? "True"
+                            : "False";
+
+
+                    const correctAnswerText =
+                        question.answer === true
+                            ? "True"
+                            : "False";
+
+
+                    item.innerHTML = `
+
+                        <div class="review-status">
+                            ${status}
+                        </div>
+
+                        <h3 class="review-question">
+                            ${index + 1}. ${question.question}
+                        </h3>
+
+                        <div class="review-answer">
+
+                            <span>
+                                Your answer:
+                            </span>
+
+                            <strong>
+                                ${userAnswerText}
+                            </strong>
+
+                        </div>
+
+                        ${
+                            !correct
+                                ? `
+                                    <div
+                                        class="review-answer"
+                                        style="margin-top: 8px;"
+                                    >
+                                        <span>
+                                            Correct answer:
+                                        </span>
+
+                                        <strong>
+                                            ${correctAnswerText}
+                                        </strong>
+                                    </div>
+                                  `
+                                : ""
+                        }
+
+                    `;
+
+
+                    reviewList.appendChild(item);
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================
+           INITIALIZE
+        ===================================== */
+
+        startQuiz();
+
+    </script>
+
+</body>
+
+</html>
