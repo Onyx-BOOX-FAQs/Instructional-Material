@@ -416,7 +416,9 @@
 
             border-bottom: 1px solid var(--line);
 
-            transition: padding .2s ease;
+            cursor: pointer;
+
+            transition: padding .2s ease, background .2s ease;
 
         }
 
@@ -424,6 +426,13 @@
         .step:hover {
 
             padding-left: 15px;
+
+        }
+
+
+        .step:focus-within {
+
+            outline: none;
 
         }
 
@@ -436,12 +445,43 @@
 
             font-size: 12px;
 
+            padding-top: 3px;
+
+        }
+
+
+        .step-toggle {
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            padding: 0;
+
+            border: 0;
+
+            background: transparent;
+
+            color: inherit;
+
+            font: inherit;
+
+            text-align: left;
+
+            cursor: pointer;
+
         }
 
 
         .step h3 {
 
-            margin: 0 0 10px;
+            margin: 0;
 
             font-size: 25px;
 
@@ -452,17 +492,85 @@
         }
 
 
-        .step p {
+        .step-icon {
+
+            flex: 0 0 auto;
+
+            width: 28px;
+
+            height: 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 1px solid var(--line);
+
+            border-radius: 50%;
+
+            color: var(--cyan);
+
+            font-family: "IBM Plex Mono", monospace;
+
+            font-size: 15px;
+
+            transition: transform .25s ease, background .25s ease, color .25s ease;
+
+        }
+
+
+        .step-description {
 
             max-width: 650px;
 
+            max-height: 0;
+
             margin: 0;
+
+            padding-right: 45px;
+
+            overflow: hidden;
+
+            opacity: 0;
 
             color: var(--muted);
 
             font-size: 15px;
 
             line-height: 1.65;
+
+            transition: max-height .35s ease, opacity .25s ease, margin-top .25s ease;
+
+        }
+
+
+        .step.is-open .step-description {
+
+            max-height: 300px;
+
+            margin-top: 15px;
+
+            opacity: 1;
+
+        }
+
+
+        .step.is-open .step-icon {
+
+            transform: rotate(45deg);
+
+            background: var(--cyan);
+
+            color: var(--bg);
+
+        }
+
+
+        .step.is-open {
+
+            padding-left: 15px;
 
         }
 
@@ -800,9 +908,45 @@
             }
 
 
-            .step:hover {
+            .step:hover,
+
+            .step.is-open {
 
                 padding-left: 0;
+
+            }
+
+
+            .step-toggle {
+
+                gap: 15px;
+
+            }
+
+
+            .step h3 {
+
+                font-size: 21px;
+
+            }
+
+
+            .step-description {
+
+                padding-right: 35px;
+
+                font-size: 14px;
+
+            }
+
+
+            .step-icon {
+
+                width: 25px;
+
+                height: 25px;
+
+                font-size: 14px;
 
             }
 
@@ -946,8 +1090,8 @@
 
 
                 <h1>
-                    Super<br>
-                    Bangis
+                    T.I.D.A.L<br>
+                    Case
                 </h1>
 
             </div>
@@ -955,7 +1099,7 @@
 
             <p class="intro-text">
 
-                [name of teim] is designed to assist educators and enhance Grade 8 students' understanding of Tides using a hands-on model that demonstrates the relationship between the Earth and lunar tides. Designed as a compact and portable device, this simulation relieves teachers of the burden of hauling bulky materials while ensuring lasting durability.
+                TIDAL Case is designed to assist educators and enhance Grade 8 students' understanding of Tides using a hands-on model that demonstrates the relationship between the Earth and lunar tides. Designed as a compact and portable device, this simulation relieves teachers of the burden of hauling bulky materials while ensuring lasting durability.
 
 
             </p>
@@ -1012,18 +1156,37 @@
 
                     <article class="step">
 
-                        <div class="step-number">
-                            01
-                        </div>
+                        <div class="step-number">01</div>
 
                         <div>
 
-                            <h3>
-                                isip na po tayo ng ilalagay dito
-                            </h3>
+                            <button class="step-toggle" type="button"
+                                    aria-expanded="false"
+                                    aria-controls="step-description-1">
 
-                            <p>
-                               isip na po tayo ng ilalagay dito
+                                <h3>Navigate the model</h3>
+
+                                <span class="step-icon" aria-hidden="true">+</span>
+
+                            </button>
+
+                            <p class="step-description" id="step-description-1">
+                                Place the suitcase on a flat, stable table.
+                                
+                                Open the suitcase carefully.
+                                
+                                Observe the model. Look  for the position of Earth, Moon, Sun, and tidal bulges and check if all components are properly attached.
+                                
+                                Make sure that the rotating platform is working and secured. 
+                                
+                                Turn the Earth slowly from west to east.Observe the movement of the coastal location.
+                                    
+                                Stop at the first tidal bulge and record the observation.
+                                
+                                Continue rotating the Earth, stop when the coastal location is between the tidal bulges.
+                                
+                                Observe the change in the condition of the tide.
+
                             </p>
 
                         </div>
@@ -1033,18 +1196,25 @@
 
                     <article class="step">
 
-                        <div class="step-number">
-                            02
-                        </div>
+                        <div class="step-number">02</div>
 
                         <div>
 
-                            <h3>
-                                isip na po tayo ng ilalagay dito
-                            </h3>
+                            <button class="step-toggle" type="button"
+                                    aria-expanded="false"
+                                    aria-controls="step-description-2">
 
-                            <p>
-                               isip na po tayo ng ilalagay dito
+                                <h3>Observe the Opposite Side</h3>
+
+                                <span class="step-icon" aria-hidden="true">+</span>
+
+                            </button>
+
+                            <p class="step-description" id="step-description-2">
+                                Rotate the earth until the coastal location is opposite the Moon and observe the tidal bulge.
+                                
+                                Compare the observation with the first position and explain why the opposite side also experiences high tide.
+
                             </p>
 
                         </div>
@@ -1054,18 +1224,26 @@
 
                     <article class="step">
 
-                        <div class="step-number">
-                            03
-                        </div>
+                        <div class="step-number">03</div>
 
                         <div>
 
-                            <h3>
-                                isip na po tayo ng ilalagay dito
-                            </h3>
+                            <button class="step-toggle" type="button"
+                                    aria-expanded="false"
+                                    aria-controls="step-description-3">
 
-                            <p>
-                                isip na po tayo ng ilalagay dito
+                                <h3>Return the Tidal Suitcase</h3>
+
+                                <span class="step-icon" aria-hidden="true">+</span>
+
+                            </button>
+
+                            <p class="step-description" id="step-description-3">
+                                Stop rotating the earth. Return the moon to its original position. 
+                                Check if all parts are secure.
+                                Close the suitcase carefully.
+
+
                             </p>
 
                         </div>
@@ -1075,39 +1253,22 @@
 
                     <article class="step">
 
-                        <div class="step-number">
-                            04
-                        </div>
+                        <div class="step-number">04</div>
 
                         <div>
 
-                            <h3>
-                                isip na po tayo ng ilalagay dito
-                            </h3>
+                            <button class="step-toggle" type="button"
+                                    aria-expanded="false"
+                                    aria-controls="step-description-4">
 
-                            <p>
+                                <h3>isip na po tayo ng ilalagay dito</h3>
+
+                                <span class="step-icon" aria-hidden="true">+</span>
+
+                            </button>
+
+                            <p class="step-description" id="step-description-4">
                                 Cisip na po tayo ng ilalagay dito
-                            </p>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="step">
-
-                        <div class="step-number">
-                            05
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                isip na po tayo ng ilalagay dito
-                            </h3>
-
-                            <p>
-                                isip na po tayo ng ilalagay dito
                             </p>
 
                         </div>
@@ -1195,7 +1356,8 @@
 
                     <p>
 
-                        ang nag mamataas ay ibinababa
+                        Always double check if there are any obstructions inside the mechanism or at the platform. The band that connects the motor and the rotating platform must always be secured first before starting the demonstration.
+
 
                     </p>
 
@@ -1227,6 +1389,40 @@
     </footer>
 
 
-</body>
+
+    <script>
+        document.querySelectorAll(".step-toggle").forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const step = button.closest(".step");
+                const isOpen = step.classList.contains("is-open");
+
+                // Close other open steps so the section stays clean.
+                document.querySelectorAll(".step.is-open").forEach(function (openStep) {
+
+                    if (openStep !== step) {
+
+                        openStep.classList.remove("is-open");
+
+                        const openButton = openStep.querySelector(".step-toggle");
+
+                        if (openButton) {
+                            openButton.setAttribute("aria-expanded", "false");
+                        }
+
+                    }
+
+                });
+
+                step.classList.toggle("is-open", !isOpen);
+                button.setAttribute("aria-expanded", String(!isOpen));
+
+            });
+
+        });
+    </script>
+
+    </body>
 
 </html>
