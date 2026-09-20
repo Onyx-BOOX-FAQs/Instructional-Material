@@ -724,6 +724,7 @@
         }
 
 
+
         /* =====================================
            FOOTER
         ===================================== */
@@ -750,6 +751,376 @@
 
         }
 
+
+
+        /* =====================================
+           TIDAL COSMOS / INTERACTIVE DETAILS
+        ===================================== */
+
+        .tide-cosmos {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            min-height: 100%;
+            pointer-events: none;
+            overflow: visible;
+            z-index: 1;
+        }
+
+        main {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cosmos-sun {
+            position: absolute;
+            top: 420px;
+            right: -55px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #fff7c7 0 18%, #f5d56a 38%, #e8a83d 70%, transparent 71%);
+            opacity: .16;
+            filter: blur(.2px);
+        }
+
+        .cosmos-earth {
+            position: absolute;
+            left: -75px;
+            top: 1120px;
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 28% 35%, rgba(112,180,116,.75) 0 7%, transparent 8%),
+                radial-gradient(circle at 63% 28%, rgba(91,157,106,.7) 0 10%, transparent 11%),
+                radial-gradient(circle at 52% 67%, rgba(93,160,109,.7) 0 12%, transparent 13%),
+                radial-gradient(circle at 45% 45%, #4b91aa 0 54%, #2f657b 75%, #183a4a 100%);
+            box-shadow: 0 0 0 1px rgba(99,230,226,.2), 0 0 65px rgba(60,150,180,.12);
+            opacity: .14;
+        }
+
+        .cosmos-stars,
+        .cosmos-stars::before,
+        .cosmos-stars::after {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.55);
+            box-shadow:
+                110px 170px rgba(255,255,255,.35),
+                240px 620px rgba(255,255,255,.3),
+                85px 980px rgba(255,255,255,.4),
+                310px 1320px rgba(255,255,255,.25),
+                92vw 900px rgba(255,255,255,.35),
+                78vw 1500px rgba(255,255,255,.25),
+                88vw 360px rgba(255,255,255,.3);
+            content: "";
+        }
+
+        .cosmos-stars { left: 6%; top: 100px; opacity: .65; }
+        .cosmos-stars::before { left: 35vw; top: 500px; opacity: .5; }
+        .cosmos-stars::after { left: 50vw; top: 980px; opacity: .45; }
+
+        .cosmos-wave {
+            position: absolute;
+            width: 320px;
+            height: 70px;
+            border: 0;
+            border-top: 2px solid rgba(99,230,226,.18);
+            border-radius: 50%;
+            transform: rotate(-4deg);
+            background: transparent;
+            cursor: pointer;
+            pointer-events: auto;
+            padding: 0;
+            transition: transform .2s ease, filter .2s ease;
+        }
+
+        .cosmos-wave:hover,
+        .cosmos-wave:focus-visible {
+            transform: rotate(-4deg) scale(1.06);
+            filter: drop-shadow(0 0 10px rgba(99,230,226,.35));
+            outline: none;
+        }
+
+        .cosmos-wave::before,
+        .cosmos-wave::after {
+            content: "";
+            position: absolute;
+            left: 15px;
+            width: 85%;
+            height: 100%;
+            border-top: 2px solid rgba(99,230,226,.07);
+            border-radius: 50%;
+        }
+
+        .cosmos-wave::before { top: 18px; }
+        .cosmos-wave::after { top: 36px; }
+        .wave-one { right: -110px; top: 760px; }
+        .wave-two { left: -130px; top: 1720px; transform: rotate(5deg); }
+        .wave-two:hover, .wave-two:focus-visible { transform: rotate(5deg) scale(1.06); }
+
+        .cosmos-sun, .cosmos-earth {
+            pointer-events: auto;
+            cursor: pointer;
+            border: 0;
+            padding: 0;
+            transition: transform .2s ease, opacity .2s ease, filter .2s ease;
+        }
+
+        .cosmos-sun:hover, .cosmos-sun:focus-visible,
+        .cosmos-earth:hover, .cosmos-earth:focus-visible {
+            transform: scale(1.07);
+            opacity: .34;
+            filter: drop-shadow(0 0 18px rgba(255,220,120,.25));
+            outline: none;
+        }
+
+        .floating-moon {
+            position: absolute;
+            z-index: 3;
+            width: 68px;
+            height: 78px;
+            border: 0;
+            border-radius: 50%;
+            padding: 0;
+            cursor: pointer;
+            background: radial-gradient(circle at 32% 28%, #ffffff 0 8%, #e7e9e8 9% 45%, #b8bdbe 46% 100%);
+            box-shadow: 0 0 0 1px rgba(255,255,255,.18), 0 10px 35px rgba(0,0,0,.45);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .floating-moon::before,
+        .floating-moon::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(90,96,98,.22);
+        }
+
+        .floating-moon::before { width: 13px; height: 13px; left: 18px; top: 21px; }
+        .floating-moon::after { width: 9px; height: 9px; right: 18px; bottom: 19px; }
+
+        .floating-moon:hover,
+        .floating-moon:focus-visible {
+            transform: scale(1.12);
+            box-shadow: 0 0 0 3px var(--cyan), 0 12px 40px rgba(0,0,0,.5);
+            outline: none;
+        }
+
+        .moon-hint {
+            position: absolute;
+            z-index: 3;
+            max-width: 230px;
+            padding: 10px 13px;
+            border: 1px solid var(--line);
+            background: rgba(17,24,29,.94);
+            color: var(--muted);
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 9px;
+            line-height: 1.5;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            pointer-events: none;
+        }
+
+        .tide-fact {
+            position: fixed;
+            z-index: 51;
+            left: 50%;
+            top: 50%;
+            width: min(420px, calc(100vw - 32px));
+            padding: 25px;
+            transform: translate(-50%, -50%) scale(.94);
+            border: 1px solid var(--cyan);
+            background: rgba(17,24,29,.98);
+            box-shadow: 0 20px 70px rgba(0,0,0,.55);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+        }
+
+        .tide-fact.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .tide-fact-label {
+            margin-bottom: 12px;
+            color: var(--cyan);
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+        }
+
+        .tide-fact p {
+            margin: 0 0 18px;
+            color: var(--text);
+            font-size: 17px;
+            line-height: 1.55;
+        }
+
+        .tide-fact-close {
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--muted);
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .tide-fact-close:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .floating-moon { transition: none; }
+        }
+
+        @media (max-width: 600px) {
+            .floating-moon { width: 62px; height: 62px; }
+            .moon-hint { display: none; }
+            .cosmos-sun { width: 120px; height: 120px; right: -55px; }
+            .cosmos-earth { width: 140px; height: 140px; left: -55px; }
+        }
+
+
+        /* =====================================
+           TIDE LAB / INTERACTIVE SIMULATOR
+        ===================================== */
+        .tide-lab {
+            margin: 80px 0 40px;
+            padding: 34px;
+            border: 1px solid var(--line);
+            background: linear-gradient(135deg, rgba(28,42,48,.96), rgba(13,20,24,.98));
+            position: relative;
+            overflow: hidden;
+        }
+        .tide-lab::before {
+            content: "TIDE LAB";
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font: 9px "IBM Plex Mono", monospace;
+            letter-spacing: .12em;
+            color: rgba(99,230,226,.45);
+        }
+        .lab-intro { max-width: 760px; margin-bottom: 28px; }
+        .lab-kicker { color: var(--cyan); font: 9px "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 9px; }
+        .lab-intro h2 { margin: 0 0 10px; font-size: clamp(28px,4vw,46px); }
+        .lab-intro p { margin: 0; color: var(--muted); line-height: 1.7; max-width: 700px; }
+
+        .lab-grid { display:grid; grid-template-columns:minmax(340px,1.2fr) minmax(285px,.8fr); gap:28px; align-items:stretch; }
+        .lab-space {
+            min-height: 460px;
+            position: relative;
+            border: 1px solid rgba(99,230,226,.18);
+            background: radial-gradient(circle at 50% 50%, rgba(64,126,145,.14), transparent 48%), #0c1418;
+            overflow: hidden;
+            touch-action: none;
+        }
+        .lab-space::before {
+            content:""; position:absolute; width:72%; height:72%; left:50%; top:50%; transform:translate(-50%,-50%);
+            border:1px dashed rgba(255,255,255,.10); border-radius:50%;
+        }
+        .lab-orbit-label { position:absolute; left:50%; bottom:17px; transform:translateX(-50%); color:rgba(255,255,255,.45); font:8px "IBM Plex Mono",monospace; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; }
+
+        .lab-sun {
+            position:absolute; left:18px; top:50%; transform:translateY(-50%); width:76px; height:76px; border:0; border-radius:50%;
+            background:radial-gradient(circle at 35% 30%,#fffbd7 0 12%,#f5d56a 42%,#d98532 100%);
+            box-shadow:0 0 38px rgba(245,213,106,.24); z-index:4;
+        }
+        .lab-sun-label { position:absolute; left:25px; top:calc(50% + 47px); color:rgba(255,255,255,.62); font:8px "IBM Plex Mono",monospace; letter-spacing:.08em; }
+
+        .lab-earth {
+            position:absolute; left:50%; top:50%; width:132px; height:132px; transform:translate(-50%,-50%); border-radius:50%;
+            background:
+                radial-gradient(circle at 29% 34%,#79ae72 0 8%,transparent 9%),
+                radial-gradient(circle at 64% 28%,#5c9c68 0 11%,transparent 12%),
+                radial-gradient(circle at 55% 70%,#6da76c 0 13%,transparent 14%),
+                radial-gradient(circle at 50% 50%,#4b91aa 0 54%,#2f657b 75%,#183a4a 100%);
+            box-shadow:0 0 0 7px rgba(99,230,226,.06),0 0 45px rgba(70,165,190,.2); z-index:3;
+        }
+        .lab-earth-label { position:absolute; left:50%; top:calc(50% + 75px); transform:translateX(-50%); color:rgba(255,255,255,.62); font:8px "IBM Plex Mono",monospace; letter-spacing:.08em; }
+
+        .lab-bulge {
+            position:absolute; left:50%; top:50%; width:300px; height:112px; transform:translate(-50%,-50%) rotate(0deg);
+            border:2px solid rgba(99,230,226,.45); border-radius:50%;
+            background:rgba(99,230,226,.025); box-shadow:0 0 34px rgba(99,230,226,.08);
+            transition:width .25s ease,height .25s ease,transform .15s ease,opacity .25s ease,border-color .25s ease; z-index:2; pointer-events:none;
+        }
+        .lab-bulge::before,.lab-bulge::after { content:""; position:absolute; width:30px; height:30px; border-radius:50%; background:rgba(99,230,226,.10); top:50%; transform:translateY(-50%); }
+        .lab-bulge::before { left:-16px; } .lab-bulge::after { right:-16px; }
+
+        .lab-moon {
+            position:absolute; left:calc(50% + 145px); top:50%; width:56px; height:56px; transform:translate(-50%,-50%); border:0; border-radius:50%;
+            background:radial-gradient(circle at 32% 28%,#fff 0 8%,#e4e6e5 9% 46%,#aeb4b5 100%);
+            box-shadow:0 0 22px rgba(255,255,255,.13),0 0 0 2px rgba(99,230,226,.18); cursor:grab; z-index:5;
+            touch-action:none; user-select:none;
+        }
+        .lab-moon:active { cursor:grabbing; }
+        .lab-moon:focus-visible { outline:2px solid var(--cyan); outline-offset:4px; }
+        .lab-moon::before,.lab-moon::after { content:""; position:absolute; border-radius:50%; background:rgba(90,96,98,.2); }
+        .lab-moon::before { width:10px;height:10px;left:14px;top:16px; } .lab-moon::after { width:8px;height:8px;right:13px;bottom:14px; }
+        .moon-label { position:absolute; transform:translateX(-50%); color:rgba(255,255,255,.68); font:8px "IBM Plex Mono",monospace; letter-spacing:.08em; z-index:6; pointer-events:none; }
+
+        .lab-coast { position:absolute; left:50%; top:50%; width:11px; height:11px; transform:translate(-50%,-50%) translateX(66px); border-radius:50%; background:#fff; box-shadow:0 0 0 4px rgba(255,255,255,.12); z-index:6; }
+        .lab-coast::after { content:"COAST"; position:absolute; left:17px; top:-5px; color:rgba(255,255,255,.58); font:8px "IBM Plex Mono",monospace; letter-spacing:.08em; }
+        .lab-drag-hint { position:absolute; left:50%; top:18px; transform:translateX(-50%); color:rgba(255,255,255,.42); font:8px "IBM Plex Mono",monospace; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; }
+
+        .lab-side { display:grid; gap:14px; }
+        .lab-card { border:1px solid rgba(255,255,255,.09); background:rgba(255,255,255,.025); padding:20px; }
+        .lab-card h3 { margin:0 0 8px; font-size:18px; }
+        .lab-card p { margin:0; color:var(--muted); font-size:13px; line-height:1.6; }
+        .lab-status { color:var(--cyan); font:700 10px "IBM Plex Mono",monospace; letter-spacing:.1em; text-transform:uppercase; }
+        .lab-title { margin:8px 0 9px; font-size:30px; }
+        .lab-explanation { color:var(--muted); font-size:13px; line-height:1.65; margin:0; }
+        .lab-readout { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:16px; }
+        .lab-stat { border:1px solid rgba(255,255,255,.08); padding:11px; }
+        .lab-stat small { display:block; color:var(--muted); font:8px "IBM Plex Mono",monospace; letter-spacing:.08em; text-transform:uppercase; margin-bottom:5px; }
+        .lab-stat strong { font-size:13px; }
+        .strength { margin-top:16px; }
+        .strength-top { display:flex; justify-content:space-between; gap:12px; color:var(--muted); font:9px "IBM Plex Mono",monospace; text-transform:uppercase; }
+        .strength-track { height:8px; margin-top:7px; background:rgba(255,255,255,.08); overflow:hidden; }
+        .strength-fill { width:88%; height:100%; background:var(--cyan); transition:width .25s ease; }
+        .lecture-heading { padding: 2px 2px 8px; border-bottom:1px solid rgba(255,255,255,.10); margin-bottom:2px; }
+        .lecture-heading span { font-size:.68rem; letter-spacing:.16em; font-weight:800; color:#8ddcff; }
+        .lecture-heading h3 { margin:4px 0 3px; font-size:1.18rem; }
+        .lecture-heading p { margin:0; color:rgba(255,255,255,.68); font-size:.84rem; line-height:1.45; }
+        .lab-lecture strong { display:block; color:var(--text); margin-bottom:6px; font-size:14px; letter-spacing:normal; word-spacing:normal; text-align:left; }
+        .lab-lecture p { margin:0; letter-spacing:normal; word-spacing:normal; text-align:left; line-height:1.55; }
+        .lecture-step { display:block; padding:0 0 16px; margin-bottom:16px; border-bottom:1px solid rgba(255,255,255,.07); }
+        .lecture-step:last-of-type { margin-bottom:15px; }
+        .lecture-step > span { display:none; }
+        .lecture-note { padding-top:1px; }
+        .lecture-note p { font-size:12px; letter-spacing:normal; word-spacing:normal; }
+
+        .lab-presets { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+        .lab-btn { border:1px solid var(--line); background:transparent; color:var(--text); padding:9px 11px; font:9px "IBM Plex Mono",monospace; letter-spacing:.05em; text-transform:uppercase; cursor:pointer; transition:.2s ease; }
+        .lab-btn:hover,.lab-btn.active { border-color:var(--cyan); color:var(--cyan); background:rgba(99,230,226,.06); }
+        .lab-quiz { margin-top:28px; padding-top:24px; border-top:1px solid var(--line); }
+        .quiz-options { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+        .quiz-feedback { min-height:20px; margin-top:12px; color:var(--muted); font-size:13px; }
+
+        @media (max-width:850px) { .lab-grid{grid-template-columns:1fr;} .lab-space{min-height:400px;} }
+        @media (max-width:600px) {
+            .tide-lab{padding:22px 16px;}
+            .lab-space{min-height:330px;}
+            .lab-earth{width:105px;height:105px;}
+            .lab-bulge{width:225px;height:88px;}
+            .lab-moon{width:48px;height:48px;}
+            .lab-coast{transform:translate(-50%,-50%) translateX(52px);}
+            .lab-sun{width:58px;height:58px;left:12px;}
+            .lab-sun-label{left:19px;top:calc(50% + 38px);}
+            .lab-drag-hint{font-size:7px;}
+        }
 
         /* =====================================
            TABLET
@@ -1075,6 +1446,14 @@
 
     <main>
 
+        <div class="tide-cosmos" aria-label="Interactive tide elements">
+            <div class="cosmos-stars" aria-hidden="true"></div>
+            <button class="cosmos-sun" id="cosmosSun" type="button" aria-label="Click the Sun for a tide fact" title="Click the Sun for a tide fact"></button>
+            <button class="cosmos-earth" id="cosmosEarth" type="button" aria-label="Click the Earth for a tide fact" title="Click the Earth for a tide fact"></button>
+            <button class="cosmos-wave wave-one" id="cosmosWaveOne" type="button" aria-label="Click the wave for a tide fact" title="Click the wave for a tide fact"></button>
+            <button class="cosmos-wave wave-two" id="cosmosWaveTwo" type="button" aria-label="Click the wave for a tide fact" title="Click the wave for a tide fact"></button>
+        </div>
+
 
         <!-- =====================================
              INTRODUCTION
@@ -1286,43 +1665,74 @@
             <a href="quiz.html" class="quiz-button">Take the Quiz →</a>
         </div>
 
+
         <!-- =====================================
-             VIDEO
+             INTERACTIVE TIDE LAB
         ===================================== -->
-
-        <section class="video-section">
-
-
-            <div class="section-side">
-
-                <span>
-                    Watch
-                </span>
-
+        <section class="tide-lab" id="tideLab">
+            <div class="lab-intro">
+                <div class="lab-kicker">Explore / Experiment / Observe</div>
+                <h2>Tide Lab</h2>
+                <p>Drag the Moon around Earth. Watch the tidal bulge follow it, then compare the real arrangements that create spring and neap tides.</p>
             </div>
 
+            <div class="lab-grid">
+                <div>
+                    <div class="lab-space" id="orbitStage" aria-label="Interactive Sun Earth Moon tide model">
+                        <div class="lab-drag-hint">Drag the Moon around Earth</div>
+                        <div class="lab-bulge" id="tideBulge" aria-hidden="true"></div>
+                        <div class="lab-earth" aria-hidden="true"></div>
+                        <div class="lab-coast" aria-hidden="true"></div>
+                        <button class="lab-sun" id="labSun" type="button" aria-label="Sun"></button>
+                        <span class="lab-sun-label">SUN</span>
+                        <button class="lab-moon" id="labMoon" type="button" aria-label="Drag the Moon around Earth"></button>
+                        <span class="moon-label" id="moonLabel">MOON</span>
+                        <span class="lab-earth-label">EARTH</span>
+                    </div>
 
-            <div class="video-wrapper">
-
-                <div class="video">
-
-                   <iframe
-    src="https://drive.google.com/file/d/1NGbFCwjRpah41k17zy-WUEPmye11XwYg/preview"
-    title="Tool Tutorial"
-    allow="autoplay">
-</iframe>
-
+                    <div class="lab-presets" aria-label="Tide presets">
+                        <button class="lab-btn active" data-mode="new">New Moon</button>
+                        <button class="lab-btn" data-mode="full">Full Moon</button>
+                        <button class="lab-btn" data-mode="first">First Quarter</button>
+                        <button class="lab-btn" data-mode="third">Third Quarter</button>
+                    </div>
                 </div>
 
+                <aside class="lab-side">
+                    <div class="lab-card" aria-live="polite">
+                        <div class="lab-status" id="labStatus">Spring tide</div>
+                        <h3 class="lab-title" id="labTitle">New Moon</h3>
+                        <p class="lab-explanation" id="labText">The Moon is between the Sun and Earth. The Sun's and Moon's tidal effects reinforce each other, giving a larger tidal range.</p>
 
-                <p class="video-caption">
-                    Visual demonstration / tool tutorial
-                </p>
+                        <div class="lab-readout">
+                            <div class="lab-stat"><small>Moon position</small><strong id="positionValue">Aligned</strong></div>
+                            <div class="lab-stat"><small>Expected range</small><strong id="strengthValue">High</strong></div>
+                        </div>
 
+                        <div class="strength">
+                            <div class="strength-top"><span>Relative tidal range</span><span id="strengthPercent">88%</span></div>
+                            <div class="strength-track"><div class="strength-fill" id="strengthFill"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="lab-card lab-lecture">
+                        <div class="lecture-heading"><span>HOW IT WORKS</span><h3 id="phaseExplainTitle">New Moon — Spring Tide</h3><p id="phaseExplainText">The Moon is between the Sun and Earth, so their tidal effects reinforce each other.</p></div>
+                        <div class="lecture-note" id="phaseExplainDetails"><strong>What is happening?</strong><p>Because the Sun, Moon, and Earth are nearly in a straight line, the Moon’s tidal effect and the Sun’s tidal effect work together. This makes the difference between high tide and low tide larger. That larger tidal range is called a <b>spring tide</b>.</p></div>
+                    </div>
+                </aside>
             </div>
 
+            <div class="lab-quiz">
+                <h3>Quick Tide Challenge</h3>
+                <p>Drag the Moon to a position where the Sun, Earth, and Moon are at roughly right angles. What should you see?</p>
+                <div class="quiz-options">
+                    <button class="lab-btn quiz-choice" data-answer="wrong">A larger tidal range</button>
+                    <button class="lab-btn quiz-choice" data-answer="right">A smaller tidal range</button>
+                    <button class="lab-btn quiz-choice" data-answer="wrong">No tidal bulges</button>
+                </div>
+                <div class="quiz-feedback" id="quizFeedback" aria-live="polite"></div>
+            </div>
         </section>
-
 
         <!-- =====================================
              IMPORTANT NOTE
@@ -1372,6 +1782,19 @@
 
 
 
+
+    <!-- =====================================
+         INTERACTIVE MOON / TIDE FACT
+    ===================================== -->
+    <button class="floating-moon" id="floatingMoon" type="button" aria-label="Click the Moon for a random tide fact" title="Click me for a tide fact"></button>
+    <div class="moon-hint" id="moonHint">CLICK THE MOON FOR A RANDOM TIDE FACT</div>
+
+    <aside class="tide-fact" id="tideFact" role="dialog" aria-modal="false" aria-labelledby="tideFactLabel" aria-describedby="tideFactText">
+        <div class="tide-fact-label" id="tideFactLabel">Moon × Tides / Random Fact</div>
+        <p id="tideFactText"></p>
+        <button class="tide-fact-close" id="tideFactClose" type="button">Close</button>
+    </aside>
+
     <!-- =====================================
          FOOTER
     ===================================== -->
@@ -1391,6 +1814,317 @@
 
 
     <script>
+
+
+        // Floating Moon: moves to a new random location and shows a random tide fact.
+        (function () {
+            const moon = document.getElementById("floatingMoon");
+            const hint = document.getElementById("moonHint");
+            const factBox = document.getElementById("tideFact");
+            const factText = document.getElementById("tideFactText");
+            const factLabel = document.getElementById("tideFactLabel");
+            const closeFact = document.getElementById("tideFactClose");
+
+            const facts = [
+                "The Moon's gravity is the main force behind Earth's tides. It pulls ocean water toward the Moon, creating a tidal bulge.",
+                "There are usually two high tides and two low tides at most coastlines during one lunar day, although local conditions can change the pattern.",
+                "A second tidal bulge forms on the side of Earth opposite the Moon. This happens because Earth and the Moon orbit a common center of mass.",
+                "The Sun also affects Earth's tides. When the Sun, Earth, and Moon line up during new and full moons, their combined effects can produce larger spring tides.",
+                "Tides do not happen at exactly the same time every day. Because a lunar day is about 24 hours and 50 minutes, high tides generally arrive about 50 minutes later each day.",
+                "The Moon's tidal pull is stronger than the Sun's tidal pull because the Moon is much closer to Earth, even though the Sun is much more massive."
+            ];
+
+            const elementFacts = {
+                sun: [
+                    "The Sun affects Earth's tides too. When the Sun and Moon pull in similar directions, their effects can combine to create stronger spring tides.",
+                    "Even though the Sun is much more massive than the Moon, its tidal effect on Earth is weaker because it is much farther away."
+                ],
+                earth: [
+                    "Earth does not have one perfectly uniform tide pattern. Coastline shape, ocean depth, and geography can change the timing and height of tides from place to place.",
+                    "The Earth and Moon orbit a shared center of mass called the barycenter. This helps explain why a second tidal bulge forms on the side of Earth opposite the Moon."
+                ],
+                wave: [
+                    "Tides are long-period waves caused mainly by the gravitational pull of the Moon and, to a lesser extent, the Sun.",
+                    "A high tide is not simply a giant wave arriving at shore. It is a gradual rise in sea level caused by the changing position of the Earth, Moon, and Sun."
+                ]
+            };
+
+            let lastFact = -1;
+
+            function randomFrom(list) {
+                return list[Math.floor(Math.random() * list.length)];
+            }
+
+            function showFact(text, label) {
+                factLabel.textContent = label + " / Random Fact";
+                factText.textContent = text;
+                factBox.classList.add("is-visible");
+            }
+
+            function placeMoonOnce() {
+                const pageHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+                const size = window.innerWidth <= 600 ? 52 : 62;
+                const gap = 10;
+                const sideWidth = window.innerWidth <= 600 ? 0 : Math.max(72, Math.min(105, window.innerWidth * .075));
+                const topMin = 150;
+                const bottom = Math.max(topMin + size, pageHeight - size - 20);
+
+                // Desktop: use the narrow outer gutters, outside the main content column.
+                // Mobile: use a tiny dedicated corner only when it is genuinely clear.
+                const candidates = [];
+                if (window.innerWidth > 850) {
+                    candidates.push(
+                        {left:gap, right:Math.max(gap, sideWidth - size)},
+                        {left:window.innerWidth - sideWidth + 2, right:window.innerWidth - size - gap}
+                    );
+                } else {
+                    candidates.push(
+                        {left:gap, right:Math.max(gap, window.innerWidth - size - gap)},
+                        {left:Math.max(gap, window.innerWidth - size - gap), right:window.innerWidth - size - gap + 1}
+                    );
+                }
+
+                const protectedBlocks = Array.from(document.querySelectorAll('.tide-lab, .hero, .picture-frame, .photo-frame, .video-section, .video, .note-section, .section, header, footer, iframe, img'))
+                    .map(el => {
+                        const r = el.getBoundingClientRect();
+                        return {left:r.left - 8, right:r.right + 8, top:r.top + window.scrollY - 8, bottom:r.bottom + window.scrollY + 8};
+                    });
+
+                function safe(x,y) {
+                    const box={left:x,right:x+size,top:y,bottom:y+size};
+                    return !protectedBlocks.some(o=>box.right>o.left && box.left<o.right && box.bottom>o.top && box.top<o.bottom);
+                }
+
+                let x=gap, y=topMin, found=false;
+                for(let i=0;i<180 && candidates.length;i++){
+                    const slot=candidates[Math.floor(Math.random()*candidates.length)];
+                    const minX=Math.min(slot.left,slot.right), maxX=Math.max(slot.left,slot.right);
+                    const testX=minX + Math.random()*Math.max(1,maxX-minX);
+                    const testY=topMin + Math.random()*Math.max(1,bottom-topMin);
+                    if(testX>=gap && testX+size<=window.innerWidth-gap && safe(testX,testY)){x=testX;y=testY;found=true;break;}
+                }
+
+                // If the viewport has no genuinely empty margin, park the Moon at the bottom
+                // edge rather than letting it cover lesson content.
+                if(!found){
+                    x=Math.max(gap,window.innerWidth-size-gap);
+                    y=Math.max(topMin,Math.min(bottom,pageHeight-size-12));
+                }
+
+                moon.style.width=size+'px';
+                moon.style.height=size+'px';
+                moon.style.left=x+'px';
+                moon.style.top=y+'px';
+                hint.style.left=Math.min(Math.max(8,x),Math.max(8,window.innerWidth-236))+'px';
+                hint.style.top=(y+size+8)+'px';
+            }
+
+            function connectInteractiveElement(id, key, label) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                el.addEventListener("click", function () {
+                    showFact(randomFrom(elementFacts[key]), label);
+                });
+            }
+
+            connectInteractiveElement("cosmosSun", "sun", "Sun × Tides");
+            connectInteractiveElement("cosmosEarth", "earth", "Earth × Tides");
+            connectInteractiveElement("cosmosWaveOne", "wave", "Waves × Tides");
+            connectInteractiveElement("cosmosWaveTwo", "wave", "Waves × Tides");
+
+            window.addEventListener("load", placeMoonOnce, { once: true });
+            window.addEventListener("resize", placeMoonOnce);
+            placeMoonOnce();
+
+            moon.addEventListener("click", function () {
+                let index;
+                do { index = Math.floor(Math.random() * facts.length); } while (facts.length > 1 && index === lastFact);
+                lastFact = index;
+                showFact(facts[index], "Moon × Tides");
+            });
+            closeFact.addEventListener("click", function () {
+                factBox.classList.remove("is-visible");
+                moon.focus();
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    factBox.classList.remove("is-visible");
+                }
+            });
+
+
+        })();
+
+
+
+        /* Tide Lab interactions: draggable Moon + physically consistent idealized tide model. */
+        (function () {
+            const stage = document.getElementById("orbitStage");
+            const moon = document.getElementById("labMoon");
+            const moonLabel = document.getElementById("moonLabel");
+            const bulge = document.getElementById("tideBulge");
+            const title = document.getElementById("labTitle");
+            const status = document.getElementById("labStatus");
+            const text = document.getElementById("labText");
+            const phaseExplainTitle = document.getElementById("phaseExplainTitle");
+            const phaseExplainText = document.getElementById("phaseExplainText");
+            const phaseExplainDetails = document.getElementById("phaseExplainDetails");
+            const positionValue = document.getElementById("positionValue");
+            const strengthValue = document.getElementById("strengthValue");
+            const strengthPercent = document.getElementById("strengthPercent");
+            const fill = document.getElementById("strengthFill");
+            if (!stage || !moon || !bulge) return;
+
+            let angle = 180; // 180° = new moon: Moon on the Sun-facing side.
+            let dragging = false;
+            let pointerId = null;
+
+            const presetAngles = { new:180, full:0, first:270, third:90 };
+
+            function normalize(a) { return (a + 360) % 360; }
+            function angleDistance(a,b) {
+                const d = Math.abs(normalize(a) - normalize(b));
+                return Math.min(d, 360-d);
+            }
+
+            function classify(a) {
+                // Sun is fixed at 180°. Spring tide occurs near 0° or 180°;
+                // neap tide occurs near 90° or 270°. Between those is a transition.
+                const springDistance = Math.min(angleDistance(a,0), angleDistance(a,180));
+                const neapDistance = Math.min(angleDistance(a,90), angleDistance(a,270));
+                if (springDistance <= 20) return {mode:"spring", name:"Spring tide", position:"Aligned", range:88};
+                if (neapDistance <= 20) return {mode:"neap", name:"Neap tide", position:"Right angle", range:48};
+                const range = Math.round(48 + (40 * (1 - springDistance / 45)));
+                return {mode:"transition", name:"Between phases", position:"Between alignments", range:Math.max(48,Math.min(88,range))};
+            }
+
+            function description(a, info) {
+                const deg = Math.round(normalize(a));
+                if (info.mode === "spring") {
+                    if (angleDistance(a,180) <= 20) return "New moon arrangement: the Moon is between the Sun and Earth, so the solar and lunar tidal effects reinforce each other.";
+                    return "Full moon arrangement: Earth is between the Sun and Moon, so the solar and lunar tidal effects reinforce each other.";
+                }
+                if (info.mode === "neap") {
+                    if (angleDistance(a,270) <= 20) return "First-quarter arrangement: the Sun and Moon are roughly at right angles, so the solar effect partly offsets the lunar effect.";
+                    return "Third-quarter arrangement: the Sun and Moon are roughly at right angles, so the solar effect partly offsets the lunar effect.";
+                }
+                return "This is a transition between spring and neap conditions. As the Moon moves toward alignment, the tidal range increases; toward a right angle, it decreases.";
+            }
+
+            function getTidalResultant(moonAngle) {
+                // Teaching-model version: keep the two-bulge axis aligned with the Moon,
+                // while the Sun changes the *strength* of the pattern. This matches the
+                // simplified equilibrium-tide picture and avoids a misleading free-spinning bulge.
+                const delta = angleDistance(moonAngle, 180);
+                const reinforcement = Math.cos(2 * delta * Math.PI / 180);
+                const normalizedRange = (reinforcement + 1) / 2;
+                const range = Math.round(48 + normalizedRange * 40);
+                return { axis: moonAngle, range };
+            }
+
+            function updatePhaseExplanation(a, info) {
+                if (!phaseExplainTitle || !phaseExplainText || !phaseExplainDetails) return;
+
+                if (info.mode === "spring") {
+                    if (angleDistance(a, 180) <= 20) {
+                        phaseExplainTitle.textContent = "New Moon — Spring Tide";
+                        phaseExplainText.textContent = "The Moon is between the Sun and Earth, so their tidal effects reinforce each other.";
+                        phaseExplainDetails.innerHTML = '<strong>What is happening?</strong><p>The Sun, Moon, and Earth are nearly in a straight line. The Moon pulls ocean water toward it, while the Sun also contributes to the tides. Because their effects are aligned, they combine to produce a larger difference between high tide and low tide. This larger tidal range is called a <b>spring tide</b>.</p>';
+                    } else {
+                        phaseExplainTitle.textContent = "Full Moon — Spring Tide";
+                        phaseExplainText.textContent = "Earth is between the Sun and Moon, so their tidal effects reinforce each other again.";
+                        phaseExplainDetails.innerHTML = '<strong>What is happening?</strong><p>The Sun, Earth, and Moon are nearly in a straight line again, but the Moon is now on the opposite side of Earth. The Sun’s and Moon’s tidal effects still work together, producing a larger difference between high tide and low tide. This is another <b>spring tide</b>.</p>';
+                    }
+                } else if (info.mode === "neap") {
+                    if (angleDistance(a, 270) <= 20) {
+                        phaseExplainTitle.textContent = "First Quarter — Neap Tide";
+                        phaseExplainText.textContent = "The Moon is about 90° from the Sun, so their tidal effects partly oppose each other.";
+                        phaseExplainDetails.innerHTML = '<strong>What is happening?</strong><p>The Moon is positioned roughly at a right angle to the Sun as seen from Earth. The Moon still produces tidal bulges, but the Sun’s tidal effect is acting in a different direction. Because the two effects partly offset each other, the difference between high tide and low tide becomes smaller. This is called a <b>neap tide</b>.</p>';
+                    } else {
+                        phaseExplainTitle.textContent = "Third Quarter — Neap Tide";
+                        phaseExplainText.textContent = "The Moon is about 90° from the Sun again, so their tidal effects partly oppose each other.";
+                        phaseExplainDetails.innerHTML = '<strong>What is happening?</strong><p>The Moon is again roughly at a right angle to the Sun, but on the opposite side compared with the First Quarter. The Moon’s tidal effect and the Sun’s tidal effect partly offset each other, so the difference between high tide and low tide becomes smaller. This produces another <b>neap tide</b>.</p>';
+                    }
+                } else {
+                    phaseExplainTitle.textContent = "Between Moon Phases";
+                    phaseExplainText.textContent = "The Moon is moving between an aligned position and a right-angle position, so the tidal range is changing.";
+                    phaseExplainDetails.innerHTML = '<strong>What is happening?</strong><p>You are between the main Moon phases shown in the model. As the Moon moves closer to the Sun–Earth line, the Sun’s and Moon’s tidal effects reinforce each other more and the tidal range grows. As it moves closer to a right angle, the effects partly offset each other and the range becomes smaller.</p>';
+                }
+            }
+
+            function render() {
+                const rect = stage.getBoundingClientRect();
+                const cx = rect.width / 2;
+                const cy = rect.height / 2;
+                const radius = Math.min(rect.width, rect.height) * (rect.width < 520 ? .32 : .35);
+                const rad = angle * Math.PI / 180;
+                const x = cx + Math.cos(rad) * radius;
+                const y = cy + Math.sin(rad) * radius;
+                moon.style.left = x + 'px';
+                moon.style.top = y + 'px';
+                moonLabel.style.left = x + 'px';
+                moonLabel.style.top = (y + 34) + 'px';
+
+                const info = classify(angle);
+                updatePhaseExplanation(angle, info);
+                const resultant = getTidalResultant(angle);
+                const bulgeWidth = 210 + (resultant.range - 48) * 2.0;
+                const bulgeHeight = 82 + (resultant.range - 48) * .55;
+
+                // Keep the bulge locked to the Moon. The Sun changes its size, not its axis,
+                // in this simplified teaching model.
+                bulge.style.width = bulgeWidth + 'px';
+                bulge.style.height = bulgeHeight + 'px';
+                bulge.style.transform = `translate(-50%,-50%) rotate(${resultant.axis}deg)`;
+                bulge.style.opacity = info.mode === 'neap' ? '.66' : '1';
+
+                status.textContent = info.name;
+                title.textContent = info.mode === 'spring' ? (angleDistance(angle,180) <= 20 ? 'New Moon' : 'Full Moon') : info.mode === 'neap' ? (angleDistance(angle,270) <= 20 ? 'First Quarter' : 'Third Quarter') : 'Transition';
+                positionValue.textContent = info.position;
+                strengthValue.textContent = resultant.range >= 75 ? 'High' : resultant.range <= 58 ? 'Lower' : 'Moderate';
+                strengthPercent.textContent = resultant.range + '%';
+                fill.style.width = resultant.range + '%';
+                text.textContent = description(angle, info);
+            }
+
+            function setAngleFromPointer(event) {
+                const rect = stage.getBoundingClientRect();
+                const x = event.clientX - rect.left - rect.width / 2;
+                const y = event.clientY - rect.top - rect.height / 2;
+                if (Math.hypot(x, y) < 30) return;
+                angle = normalize(Math.atan2(y, x) * 180 / Math.PI);
+                render();
+            }
+
+            moon.addEventListener("pointerdown", event => {
+                dragging = true; pointerId = event.pointerId; moon.setPointerCapture(pointerId); event.preventDefault();
+            });
+            moon.addEventListener("pointermove", event => { if (dragging && event.pointerId === pointerId) setAngleFromPointer(event); });
+            moon.addEventListener("pointerup", event => { dragging = false; pointerId = null; try { moon.releasePointerCapture(event.pointerId); } catch(e) {} });
+            moon.addEventListener("pointercancel", () => { dragging = false; pointerId = null; });
+
+            document.querySelectorAll("[data-mode]").forEach(button => {
+                button.addEventListener("click", () => { angle = presetAngles[button.dataset.mode]; render(); document.querySelectorAll("[data-mode]").forEach(b => b.classList.toggle("active", b === button)); });
+            });
+
+            document.getElementById("labSun").addEventListener("click", () => {
+                angle = 180;
+                render();
+                document.querySelectorAll("[data-mode]").forEach(b => b.classList.toggle("active", b.dataset.mode === "new"));
+            });
+
+            document.querySelectorAll(".quiz-choice").forEach(button => {
+                button.addEventListener("click", () => {
+                    const feedback = document.getElementById("quizFeedback");
+                    feedback.textContent = button.dataset.answer === "right" ? "Correct — at right angles, the Sun's tidal effect partly offsets the Moon's, so the tidal range is smaller." : "Not quite. Look at what happens when the Moon is about 90° from the Sun–Earth line.";
+                });
+            });
+
+            window.addEventListener("resize", render);
+            render();
+        })();
+
         document.querySelectorAll(".step-toggle").forEach(function (button) {
 
             button.addEventListener("click", function () {
